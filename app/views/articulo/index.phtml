@@ -1,0 +1,84 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="page-header">
+    <h1>
+        Search articulo
+    </h1>
+    <p>
+        <?php echo $this->tag->linkTo(["articulo/new", "Create articulo"]) ?>
+    </p>
+</div>
+
+<?php echo $this->getContent() ?>
+
+<?php
+    echo $this->tag->form(
+        [
+            "articulo/search",
+            "autocomplete" => "off",
+            "class" => "form-horizontal"
+        ]
+    );
+?>
+
+<div class="form-group">
+    <label for="fieldCodigoCategoria" class="col-sm-2 control-label">Codigo Of Categoria</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["codigo_categoria", "type" => "number", "class" => "form-control", "id" => "fieldCodigoCategoria"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldCodigoArticulo" class="col-sm-2 control-label">Codigo Of Articulo</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["codigo_articulo", "type" => "number", "class" => "form-control", "id" => "fieldCodigoArticulo"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldTitulo" class="col-sm-2 control-label">Titulo</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["titulo", "size" => 30, "class" => "form-control", "id" => "fieldTitulo"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldPrecio" class="col-sm-2 control-label">Precio</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["precio", "size" => 30, "class" => "form-control", "id" => "fieldPrecio"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldDescripcion" class="col-sm-2 control-label">Descripcion</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["descripcion", "size" => 30, "class" => "form-control", "id" => "fieldDescripcion"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldDescuento" class="col-sm-2 control-label">Descuento</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["descuento", "size" => 30, "class" => "form-control", "id" => "fieldDescuento"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldEnvio" class="col-sm-2 control-label">Envio</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->selectStatic(["envio", [], "class" => "form-control", "id" => "fieldEnvio"]) ?>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php echo $this->tag->submitButton(["Search", "class" => "btn btn-default"]) ?>
+    </div>
+</div>
+
+<?php echo $this->tag->endForm(); ?>
