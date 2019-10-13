@@ -6,11 +6,13 @@
 
 <?php use Phalcon\Tag; ?>
 
+<br><br>
 <div class="row">
+    
     <nav>
         <ul class="pager">
-            <li class="previous"><?php echo $this->tag->linkTo(["articulo/index", "Atras"]); ?></li>
-            <li class="next"><?php echo $this->tag->linkTo(["articulo/new", "Crear Articulo "]); ?></li>
+            <button class="btn btn-default" class="previous"><?php echo $this->tag->linkTo(["articulo/index", "Atras"]); ?></button>
+            <button class="btn btn-default" class="next"><?php echo $this->tag->linkTo(["articulo/new", "Crear Articulo "]); ?></button>
         </ul>
     </nav>
 </div>
@@ -33,8 +35,8 @@
             <th>Descuento</th>
             <th>Envio</th>
 
-                <th></th>
-                <th></th>
+                <th style="text-align: center" colspan="2">Acciones</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -67,8 +69,8 @@
             <ul class="pagination">
                 <li><?php echo $this->tag->linkTo(["articulo/search", "Primera pagina", 'class' => 'page-link']) ?></li>
                 <li><?php echo $this->tag->linkTo(["articulo/search?page=" . $page->before, "....", 'class' => 'page-link']) ?></li>
-                <li><?php echo $this->tag->linkTo(["articulo/search?page=" . $page->next, "Siguiente", 'class' => 'page-link']) ?></li>
-                <li><?php echo $this->tag->linkTo(["articulo/search?page=" . $page->last, "Ultima", 'class' => 'page-link']) ?></li>
+                <li><?php echo $this->tag->linkTo(["articulo/search?page=" . $page->next, "Siguiente Pagina", 'class' => 'page-link']) ?></li>
+                <li><?php echo $this->tag->linkTo(["articulo/search?page=" . $page->last, "Ultima Pagina", 'class' => 'page-link']) ?></li>
             </ul>
         </nav>
     </div>

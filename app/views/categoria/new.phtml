@@ -7,7 +7,7 @@
 <div class="row">
     <nav>
         <ul class="pager">
-            <li class="previous"><?php echo $this->tag->linkTo(["categoria", "Go Back"]) ?></li>
+            <button class="btn btn-default" class="previous"><?php echo $this->tag->linkTo(["categoria/search", "Atras"]) ?></button>
         </ul>
     </nav>
 </div>
@@ -31,21 +31,21 @@
 ?>
 
 <div class="form-group">
-    <label for="fieldCodigoCategoria" class="col-sm-2 control-label">Codigo Of Categoria</label>
+    <label for="fieldCodigoCategoria" class="col-sm-2 control-label">Codigo de Categoria</label>
     <div class="col-sm-10">
         <?php echo $this->tag->textField(["codigo_categoria", "type" => "number", "class" => "form-control", "id" => "fieldCodigoCategoria"]) ?>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="fieldNombreCategoria" class="col-sm-2 control-label">Nombre Of Categoria</label>
+    <label for="fieldNombreCategoria" class="col-sm-2 control-label">Nombre de Categoria</label>
     <div class="col-sm-10">
         <?php echo $this->tag->textField(["nombre_categoria", "size" => 30, "class" => "form-control", "id" => "fieldNombreCategoria"]) ?>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="fieldCodigoDepartamento" class="col-sm-2 control-label">Codigo Of Departamento</label>
+    <label for="fieldCodigoDepartamento" class="col-sm-2 control-label">Codigo de Departamento</label>
     <div class="col-sm-10">
         <?php echo $this->tag->textField(["codigo_departamento", "type" => "number", "class" => "form-control", "id" => "fieldCodigoDepartamento"]) ?>
     </div>
@@ -54,7 +54,7 @@
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-        <?php echo $this->tag->submitButton(["Save", "class" => "btn btn-default"]) ?>
+        <?php echo $this->tag->submitButton(["Guardar", "class" => "btn btn-default"]) ?>
     </div>
 </div>
 

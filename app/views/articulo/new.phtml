@@ -3,11 +3,11 @@
  * @var \Phalcon\Mvc\View\Engine\Php $this
  */
 ?>
-
+<br>
 <div class="row">
     <nav>
         <ul class="pager">
-            <li class="previous"><?php echo $this->tag->linkTo(["articulo", "Go Back"]) ?></li>
+            <button class="btn btn-default" class="previous"><?php echo $this->tag->linkTo(["articulo/search", "Atras"]) ?></button>
         </ul>
     </nav>
 </div>
@@ -82,7 +82,7 @@
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-        <?php echo $this->tag->submitButton(["Save", "class" => "btn btn-default"]) ?>
+        <?php echo $this->tag->submitButton(["Guardar", "class" => "btn btn-default"]) ?>
     </div>
 </div>
 
