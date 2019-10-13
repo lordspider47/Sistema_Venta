@@ -5,12 +5,15 @@
 ?>
 
 <div class="page-header">
-    <h1>
-        Search departamento
-    </h1>
-    <p>
-        <?php echo $this->tag->linkTo(["departamento/new", "Create departamento"]) ?>
-    </p>
+    <hr>
+    <button class="btn btn-default">
+        <?php echo $this->tag->linkTo(["departamento/new", "Crear nuevo departamento"]) ?>
+    </button>
+
+    <hr>
+    <h2>
+        Buscar departamento
+    </h2>
 </div>
 
 <?php echo $this->getContent() ?>
@@ -26,23 +29,24 @@
 ?>
 
 <div class="form-group">
-    <label for="fieldCodigoDepartamento" class="col-sm-2 control-label">Codigo Of Departamento</label>
+    <label for="fieldCodigoDepartamento" class="col-sm-4 control-label">Codigo de Departamento</label>
     <div class="col-sm-10">
         <?php echo $this->tag->textField(["codigo_departamento", "type" => "number", "class" => "form-control", "id" => "fieldCodigoDepartamento"]) ?>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="fieldNombreDepartamento" class="col-sm-2 control-label">Nombre Of Departamento</label>
+    <label for="fieldNombreDepartamento" class="col-sm-4 control-label">Nombre de Departamento</label>
     <div class="col-sm-10">
         <?php echo $this->tag->textField(["nombre_departamento", "size" => 30, "class" => "form-control", "id" => "fieldNombreDepartamento"]) ?>
     </div>
 </div>
 
+<hr>
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-        <?php echo $this->tag->submitButton(["Search", "class" => "btn btn-default"]) ?>
+        <?php echo $this->tag->submitButton(["Buscar", "class" => "btn btn-default"]) ?>
     </div>
 </div>
 
