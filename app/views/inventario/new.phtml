@@ -6,18 +6,18 @@
 
 <div class="row">
     <nav>
-        <ul class="pager">
-            <li class="previous"><?php echo $this->tag->linkTo(["inventario", "Go Back"]) ?></li>
-        </ul>
+        <button class="btn btn-default">
+            <?php echo $this->tag->linkTo(["inventario", "Regresar"]) ?>
+        </button>
     </nav>
 </div>
 
 <div class="page-header">
     <h1>
-        Create inventario
+        Agregar articulo al inventario
     </h1>
 </div>
-
+<hr>
 <?php echo $this->getContent(); ?>
 
 <?php
@@ -31,23 +31,23 @@
 ?>
 
 <div class="form-group">
+    <label for="fieldCodigoArticulo" class="col-sm-2 control-label">Codigo de Articulo</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["codigo_articulo", "type" => "number", "class" => "form-control", "id" => "fieldCodigoArticulo"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
     <label for="fieldCantidad" class="col-sm-2 control-label">Cantidad</label>
     <div class="col-sm-10">
         <?php echo $this->tag->textField(["cantidad", "type" => "number", "class" => "form-control", "id" => "fieldCantidad"]) ?>
     </div>
 </div>
 
-<div class="form-group">
-    <label for="fieldCodigoArticulo" class="col-sm-2 control-label">Codigo Of Articulo</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textField(["codigo_articulo", "type" => "number", "class" => "form-control", "id" => "fieldCodigoArticulo"]) ?>
-    </div>
-</div>
-
-
+<hr>
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-        <?php echo $this->tag->submitButton(["Save", "class" => "btn btn-default"]) ?>
+        <?php echo $this->tag->submitButton(["Guardar", "class" => "btn btn-default"]) ?>
     </div>
 </div>
 
