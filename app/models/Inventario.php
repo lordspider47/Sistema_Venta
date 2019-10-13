@@ -1,7 +1,5 @@
 <?php
 
-namespace venta;
-
 class Inventario extends \Phalcon\Mvc\Model
 {
 
@@ -9,59 +7,19 @@ class Inventario extends \Phalcon\Mvc\Model
      *
      * @var integer
      */
-    protected $cantidad;
+    public $id_inventario;
 
     /**
      *
      * @var integer
      */
-    protected $codigo_articulo;
+    public $cantidad;
 
     /**
-     * Method to set the value of field cantidad
      *
-     * @param integer $cantidad
-     * @return $this
+     * @var integer
      */
-    public function setCantidad($cantidad)
-    {
-        $this->cantidad = $cantidad;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field codigo_articulo
-     *
-     * @param integer $codigo_articulo
-     * @return $this
-     */
-    public function setCodigoArticulo($codigo_articulo)
-    {
-        $this->codigo_articulo = $codigo_articulo;
-
-        return $this;
-    }
-
-    /**
-     * Returns the value of field cantidad
-     *
-     * @return integer
-     */
-    public function getCantidad()
-    {
-        return $this->cantidad;
-    }
-
-    /**
-     * Returns the value of field codigo_articulo
-     *
-     * @return integer
-     */
-    public function getCodigoArticulo()
-    {
-        return $this->codigo_articulo;
-    }
+    public $codigo_articulo;
 
     /**
      * Initialize method for model.
@@ -70,7 +28,7 @@ class Inventario extends \Phalcon\Mvc\Model
     {
         $this->setSchema("public");
         $this->setSource("inventario");
-        $this->belongsTo('codigo_articulo', '\Articulo', 'codigo_articulo', ['alias' => 'Articulo']);
+        $this->belongsTo('id_inventario', 'Articulo', 'codigo_articulo', ['alias' => 'Articulo']);
     }
 
     /**
@@ -103,20 +61,6 @@ class Inventario extends \Phalcon\Mvc\Model
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
-    }
-
-    /**
-     * Independent Column Mapping.
-     * Keys are the real names in the table and the values their names in the application
-     *
-     * @return array
-     */
-    public function columnMap()
-    {
-        return [
-            'cantidad' => 'cantidad',
-            'codigo_articulo' => 'codigo_articulo'
-        ];
     }
 
 }

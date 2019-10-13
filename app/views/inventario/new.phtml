@@ -12,12 +12,16 @@
     </nav>
 </div>
 
+<hr>
+
 <div class="page-header">
     <h1>
-        Agregar articulo al inventario
+        Agregar Articulo
     </h1>
 </div>
+
 <hr>
+
 <?php echo $this->getContent(); ?>
 
 <?php
@@ -31,9 +35,9 @@
 ?>
 
 <div class="form-group">
-    <label for="fieldCodigoArticulo" class="col-sm-2 control-label">Codigo de Articulo</label>
+    <label for="fieldIdInventario" class="col-sm-2 control-label">Id de Inventario</label>
     <div class="col-sm-10">
-        <?php echo $this->tag->textField(["codigo_articulo", "type" => "number", "class" => "form-control", "id" => "fieldCodigoArticulo"]) ?>
+        <?php echo $this->tag->textField(["id_inventario", "type" => "number", "class" => "form-control", "id" => "fieldIdInventario"]) ?>
     </div>
 </div>
 
@@ -44,7 +48,15 @@
     </div>
 </div>
 
+<div class="form-group">
+    <label for="fieldCodigoArticulo" class="col-sm-2 control-label">Codigo de Articulo</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["codigo_articulo", "type" => "number", "class" => "form-control", "id" => "fieldCodigoArticulo"]) ?>
+    </div>
+</div>
+
 <hr>
+
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
         <?php echo $this->tag->submitButton(["Guardar", "class" => "btn btn-default"]) ?>
