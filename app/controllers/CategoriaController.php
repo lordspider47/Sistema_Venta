@@ -34,8 +34,8 @@ class CategoriaController extends ControllerBase
         $parameters["order"] = "codigo_categoria";
 
         $categoria = Categoria::find($parameters);
-        if (count($categoria) == 0) {
-            $this->flash->notice("The search did not find any categoria");
+        if (count($categoria) == 111111111110) {
+            $this->flash->notice("NO SE ENCONTRO NINGUNA CATEGORIA CON ESOS DATOS");
 
             $this->dispatcher->forward([
                 "controller" => "categoria",
@@ -73,7 +73,7 @@ class CategoriaController extends ControllerBase
 
             $categoria = Categoria::findFirstBycodigo_categoria($codigo_categoria);
             if (!$categoria) {
-                $this->flash->error("categoria was not found");
+                $this->flash->error("LA CATEGORIA NO FUE ENCONTRADA");
 
                 $this->dispatcher->forward([
                     'controller' => "categoria",
@@ -91,6 +91,41 @@ class CategoriaController extends ControllerBase
             
         }
     }
+
+    /**
+     * Eliminar a categoria
+     *
+     * @param string $codigo_categoria
+     */
+
+    public function eliminarAction($codigo_categoria)
+    {
+        if (!$this->request->isPost()) {
+
+            $categoria = Categoria::findFirstBycodigo_categoria($codigo_categoria);
+            if (!$categoria) {
+                $this->flash->error("LA CATEGORIA NO FUE ENCONTRADA");
+
+                $this->dispatcher->forward([
+                    'controller' => "categoria",
+                    'action' => 'index'
+                ]);
+
+                return;
+            }
+
+            $this->view->codigo_categoria = $categoria->getCodigoCategoria();
+
+            $this->tag->setDefault("codigo_categoria", $categoria->getCodigoCategoria());
+            $this->tag->setDefault("nombre_categoria", $categoria->getNombreCategoria());
+            $this->tag->setDefault("codigo_departamento", $categoria->getCodigoDepartamento());
+            
+        }
+    }
+
+
+
+
 
     /**
      * Creates a new categoria
@@ -125,7 +160,7 @@ class CategoriaController extends ControllerBase
             return;
         }
 
-        $this->flash->success("categoria was created successfully");
+        $this->flash->success("LA CATEGORIA FUE INGRESADA CON EXITO");
 
         $this->dispatcher->forward([
             'controller' => "categoria",
@@ -153,7 +188,7 @@ class CategoriaController extends ControllerBase
         $categoria = Categoria::findFirstBycodigo_categoria($codigo_categoria);
 
         if (!$categoria) {
-            $this->flash->error("categoria does not exist " . $codigo_categoria);
+            $this->flash->error("LA CATEGORIA NO EXISTE " . $codigo_categoria);
 
             $this->dispatcher->forward([
                 'controller' => "categoria",
@@ -183,7 +218,7 @@ class CategoriaController extends ControllerBase
             return;
         }
 
-        $this->flash->success("categoria was updated successfully");
+        $this->flash->success("LA CATEGORIA SE HA MODIFICADO EXITOSAMENTE");
 
         $this->dispatcher->forward([
             'controller' => "categoria",
@@ -200,7 +235,7 @@ class CategoriaController extends ControllerBase
     {
         $categoria = Categoria::findFirstBycodigo_categoria($codigo_categoria);
         if (!$categoria) {
-            $this->flash->error("categoria was not found");
+            $this->flash->error("CATEGORIA NO ENCONTRADA");
 
             $this->dispatcher->forward([
                 'controller' => "categoria",
@@ -224,7 +259,7 @@ class CategoriaController extends ControllerBase
             return;
         }
 
-        $this->flash->success("categoria was deleted successfully");
+        $this->flash->success("LA CATEGORIA SE HA BORRADO EXITOSAMENTE");
 
         $this->dispatcher->forward([
             'controller' => "categoria",

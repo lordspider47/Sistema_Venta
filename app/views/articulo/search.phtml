@@ -24,8 +24,8 @@
 <?php echo $this->getContent(); ?>
 
 <div class="row">
-    <table class="table table-bordered">
-        <thead>
+    <table bordes:black 5px solid; class="table table-bordered table-striped">
+        <thead class="thead-dark">
             <tr>
                 <th>Codigo de Categoria</th>
             <th>Codigo de Articulo</th>
@@ -51,7 +51,7 @@
             <td><?php echo $articulo->getEnvio() ?></td>
 
                 <td><?php echo $this->tag->linkTo(["articulo/edit/" . $articulo->getCodigoCategoria(), "Editar"]); ?></td>
-                <td><?php echo $this->tag->linkTo(["articulo/delete/" . $articulo->getCodigoCategoria(), "Borrar"]); ?></td>
+                <td><?php echo $this->tag->linkTo(["articulo/eliminar/" . $articulo->getCodigoCategoria(), "Borrar"]); ?></td>
             </tr>
         <?php endforeach; ?>
         </tbody>

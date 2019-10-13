@@ -3,18 +3,18 @@
  * @var \Phalcon\Mvc\View\Engine\Php $this
  */
 ?>
-<br>
+<br><br>
 <div class="row">
     <nav>
         <ul class="pager">
-            <button class="btn btn-default" class="previous"><?php echo $this->tag->linkTo(["articulo/search", "Atras"]) ?></button>
+            <button class="btn btn-default" class="previous"><?php echo $this->tag->linkTo(["articulo/search", "Regresar"]) ?></button>
         </ul>
     </nav>
 </div>
 
 <div class="page-header">
     <h1>
-        Crear articulo
+        ESTA SEGURO QUE DESEA ELIMINAR ESTE ARTICULO?
     </h1>
 </div>
 
@@ -23,7 +23,7 @@
 <?php
     echo $this->tag->form(
         [
-            "articulo/create",
+            "articulo/save",
             "autocomplete" => "off",
             "class" => "form-horizontal"
         ]
@@ -80,10 +80,4 @@
 </div>
 
 
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <?php echo $this->tag->submitButton(["Guardar", "class" => "btn btn-success"]) ?>
-    </div>
-</div>
-
-<?php echo $this->tag->endForm(); ?>
+<button class="btn btn-danger"><?php echo $this->tag->linkTo(["articulo/delete/" . $codigo_categoria, "Borrar"]); ?></button>

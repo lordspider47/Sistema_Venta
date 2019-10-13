@@ -35,7 +35,7 @@ class ArticuloController extends ControllerBase
 
         $articulo = Articulo::find($parameters);
         if (count($articulo) == 11100000) {
-            $this->flash->notice("The search did not find any articulo");
+            $this->flash->notice("NO SE HA ENCONTRADO EL ARTICULO BUSCADO");
 
             $this->dispatcher->forward([
                 "controller" => "articulo",
@@ -73,7 +73,42 @@ class ArticuloController extends ControllerBase
 
             $articulo = Articulo::findFirstBycodigo_categoria($codigo_categoria);
             if (!$articulo) {
-                $this->flash->error("articulo was not found");
+                $this->flash->error("EL ARTICULO NO HA SIDO ENCONTRADO");
+
+                $this->dispatcher->forward([
+                    'controller' => "articulo",
+                    'action' => 'index'
+                ]);
+
+                return;
+            }
+
+            $this->view->codigo_categoria = $articulo->getCodigoCategoria();
+
+            $this->tag->setDefault("codigo_categoria", $articulo->getCodigoCategoria());
+            $this->tag->setDefault("codigo_articulo", $articulo->getCodigoArticulo());
+            $this->tag->setDefault("titulo", $articulo->getTitulo());
+            $this->tag->setDefault("precio", $articulo->getPrecio());
+            $this->tag->setDefault("descripcion", $articulo->getDescripcion());
+            $this->tag->setDefault("descuento", $articulo->getDescuento());
+            $this->tag->setDefault("envio", $articulo->getEnvio());
+            
+        }
+    }
+
+
+    /**
+     * Edits a articulo
+     *
+     * @param string $codigo_categoria
+     */
+    public function eliminarAction($codigo_categoria)
+    {
+        if (!$this->request->isPost()) {
+
+            $articulo = Articulo::findFirstBycodigo_categoria($codigo_categoria);
+            if (!$articulo) {
+                $this->flash->error("EL ARTICULO NO HA SIDO ENCONTRADO");
 
                 $this->dispatcher->forward([
                     'controller' => "articulo",
@@ -133,7 +168,7 @@ class ArticuloController extends ControllerBase
             return;
         }
 
-        $this->flash->success("articulo was created successfully");
+        $this->flash->success("EL ARTICULO SE HA GUARDADO EXITOSAMENTE");
 
         $this->dispatcher->forward([
             'controller' => "articulo",
@@ -161,7 +196,7 @@ class ArticuloController extends ControllerBase
         $articulo = Articulo::findFirstBycodigo_categoria($codigo_categoria);
 
         if (!$articulo) {
-            $this->flash->error("articulo does not exist " . $codigo_categoria);
+            $this->flash->error("EL ARTICULO NO EXISTE " . $codigo_categoria);
 
             $this->dispatcher->forward([
                 'controller' => "articulo",
@@ -195,7 +230,7 @@ class ArticuloController extends ControllerBase
             return;
         }
 
-        $this->flash->success("articulo was updated successfully");
+        $this->flash->success("EL ARTICULO SE HA MODIFICADO EXITOSAMENTE");
 
         $this->dispatcher->forward([
             'controller' => "articulo",
@@ -212,7 +247,7 @@ class ArticuloController extends ControllerBase
     {
         $articulo = Articulo::findFirstBycodigo_categoria($codigo_categoria);
         if (!$articulo) {
-            $this->flash->error("articulo was not found");
+            $this->flash->error("EL ARTICULO NO HA SIDO ENCONTRADO");
 
             $this->dispatcher->forward([
                 'controller' => "articulo",
@@ -236,7 +271,7 @@ class ArticuloController extends ControllerBase
             return;
         }
 
-        $this->flash->success("articulo was deleted successfully");
+        $this->flash->success("EL ARTICULO SE HA ELIMINADO EXITOSAMENTE");
 
         $this->dispatcher->forward([
             'controller' => "articulo",
