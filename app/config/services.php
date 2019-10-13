@@ -44,8 +44,9 @@ $di->setShared('view', function () {
             $volt = new VoltEngine($view, $this);
 
             $volt->setOptions([
-                'compiledPath' => $config->application->cacheDir,
-                'compiledSeparator' => '_'
+                'compiledPath' => "../app/cache/",
+                'compiledSeparator' => '_',
+                'complieAlways' => true,
             ]);
 
             return $volt;
@@ -69,7 +70,7 @@ $di->setShared('db', function () {
         'username' => $config->database->username,
         'password' => $config->database->password,
         'dbname'   => $config->database->dbname,
-        'charset'  => $config->database->charset
+        //'charset'  => $config->database->charset
     ];
 
     if ($config->database->adapter == 'Postgresql') {

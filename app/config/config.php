@@ -10,8 +10,8 @@ return new \Phalcon\Config([
     'database' => [
         'adapter'     => 'Postgresql',
         'host'        => 'localhost',
-	'dbname'      => 'venta',
-	'port'	      => 5432,
+	    'dbname'      => 'venta',
+	    'port'	      => 5432,
         'username'    => 'postgres',
         'password'    => 'admin123',
         

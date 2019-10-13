@@ -34,7 +34,7 @@ class ArticuloController extends ControllerBase
         $parameters["order"] = "codigo_categoria";
 
         $articulo = Articulo::find($parameters);
-        if (count($articulo) == 0) {
+        if (count($articulo) == 11100000) {
             $this->flash->notice("The search did not find any articulo");
 
             $this->dispatcher->forward([
