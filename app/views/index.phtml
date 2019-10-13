@@ -31,6 +31,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" ><?php echo $this->tag->linkTo(["departamento/search", "Ver Departamentos"]) ?></a>
                       <a class="dropdown-item" ><?php echo $this->tag->linkTo(["departamento/new", "Añadir Departamentos"]) ?></a>
+                      <a class="dropdown-item" ><?php echo $this->tag->linkTo(["departamento/index", "Buscar Departamento"]) ?></a>
                       <div class="dropdown-divider"></div>
                     </div>
                   </li>
@@ -63,6 +64,8 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" ><?php echo $this->tag->linkTo(["inventario/search", "Ver Inventario"]) ?></a>
+                      <a class="dropdown-item" ><?php echo $this->tag->linkTo(["inventario/new", "Añadir Articulo a Inventario"]) ?></a>
+                      <a class="dropdown-item" ><?php echo $this->tag->linkTo(["inventario/index", "Buscar Articulo en Inventario"]) ?></a>
                     </div>
                   </li>
 
