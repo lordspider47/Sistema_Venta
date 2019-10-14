@@ -1,8 +1,9 @@
-<?php
+<?php 
  
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 use venta\Categoria;
+use venta\Articulo;
 
 class CategoriaController extends ControllerBase
 {
@@ -103,7 +104,56 @@ class CategoriaController extends ControllerBase
         if (!$this->request->isPost()) {
 
             $categoria = Categoria::findFirstBycodigo_categoria($codigo_categoria);
-            if (!$categoria) {
+            $articulo = Articulo::findFirstBycodigo_categoria($codigo_categoria);
+
+            /*if (count($articulo->codigo_categoria) == 0) {
+                $this->flash->success("SE PUEDE ELIMINAR LA CATEGORIA PORQUE TIENE ARTICULOS ASIGNADOS A ESTA");
+                $this->dispatcher->forward([
+                    "controller" => "categoria",
+                    "action" => "search"
+
+                ]);
+                return;
+                
+            } */
+
+            
+
+            if ($categoria->codigo_categoria == $articulo->codigo_categoria) {
+
+                $this->flash->error("NO SE PUEDE ELIMINAR LA CATEGORIA PORQUE TIENE ARTICULOS ASIGNADOS A ESTA");
+                $this->dispatcher->forward([
+                    "controller" => "categoria",
+                    "action" => "search"
+
+                ]);
+                return;
+
+            } /*else {
+                $this->flash->success("SE PUEDE ELIMINAR LA CATEGORIA PORQUE TIENE ARTICULOS ASIGNADOS A ESTA");
+                $this->dispatcher->forward([
+                    "controller" => "categoria",
+                    "action" => "eliminar"
+
+                ]);
+                return;
+
+            }*/
+
+            /*if (count($articulo->codigo_categoria) == 111111111110) {
+            $this->flash->notice("NO SE ENCONTRO NINGUNA CATEGORIA CON ESOS DATOS");
+
+            $this->dispatcher->forward([
+                "controller" => "categoria",
+                "action" => "index"
+            ]);
+
+            return;
+        }*/
+
+
+
+            /*if (!$categoria) {
                 $this->flash->error("LA CATEGORIA NO FUE ENCONTRADA");
 
                 $this->dispatcher->forward([
@@ -112,7 +162,7 @@ class CategoriaController extends ControllerBase
                 ]);
 
                 return;
-            }
+            }*/
 
             $this->view->codigo_categoria = $categoria->getCodigoCategoria();
 
@@ -122,10 +172,6 @@ class CategoriaController extends ControllerBase
             
         }
     }
-
-
-
-
 
     /**
      * Creates a new categoria
@@ -234,6 +280,12 @@ class CategoriaController extends ControllerBase
     public function deleteAction($codigo_categoria)
     {
         $categoria = Categoria::findFirstBycodigo_categoria($codigo_categoria);
+        if ($categoria > 0) {
+            # code...
+        }
+
+
+
         if (!$categoria) {
             $this->flash->error("CATEGORIA NO ENCONTRADA");
 
