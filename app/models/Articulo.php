@@ -48,6 +48,11 @@ class Articulo extends \Phalcon\Mvc\Model
     protected $envio;
 
     /**
+     *
+     * @var string
+     */
+    protected $ruta;
+    /**
      * Method to set the value of field codigo_categoria
      *
      * @param integer $codigo_categoria
@@ -139,6 +144,18 @@ class Articulo extends \Phalcon\Mvc\Model
     }
 
     /**
+     * Method to set the value of field envio
+     *
+     * @param string $ruta
+     * @return $this
+     */
+    public function setRuta($ruta)
+    {
+        $this->ruta = $ruta;
+
+        return $this;
+    }
+    /**
      * Returns the value of field codigo_categoria
      *
      * @return integer
@@ -209,6 +226,16 @@ class Articulo extends \Phalcon\Mvc\Model
     }
 
     /**
+     * Returns the value of field envio
+     *
+     * @return string
+     */
+    public function getRuta()
+    {
+        return $this->ruta;
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
@@ -266,7 +293,8 @@ class Articulo extends \Phalcon\Mvc\Model
             'precio' => 'precio',
             'descripcion' => 'descripcion',
             'descuento' => 'descuento',
-            'envio' => 'envio'
+            'envio' => 'envio',
+            'ruta' => 'ruta'
         ];
     }
 

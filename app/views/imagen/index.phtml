@@ -1,0 +1,49 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="page-header">
+    <h1>
+        Search imagen
+    </h1>
+    <p>
+        <?php echo $this->tag->linkTo(["imagen/new", "Create imagen"]) ?>
+    </p>
+</div>
+
+<?php echo $this->getContent() ?>
+
+<?php
+    echo $this->tag->form(
+        [
+            "imagen/search",
+            "autocomplete" => "off",
+            "class" => "form-horizontal"
+        ]
+    );
+?>
+
+<div class="form-group">
+    <label for="fieldCodigoImagen" class="col-sm-2 control-label">Codigo Of Imagen</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["codigo_imagen", "type" => "number", "class" => "form-control", "id" => "fieldCodigoImagen"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldImagenes" class="col-sm-2 control-label">Imagenes</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["imagenes", "size" => 30, "class" => "form-control", "id" => "fieldImagenes"]) ?>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php echo $this->tag->submitButton(["Search", "class" => "btn btn-default"]) ?>
+    </div>
+</div>
+
+<?php echo $this->tag->endForm(); ?>

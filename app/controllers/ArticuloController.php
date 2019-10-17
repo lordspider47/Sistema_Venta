@@ -82,7 +82,6 @@ class ArticuloController extends ControllerBase
 
                 return;
             }
-
             $this->view->codigo_categoria = $articulo->getCodigoCategoria();
 
             $this->tag->setDefault("codigo_categoria", $articulo->getCodigoCategoria());
@@ -92,6 +91,59 @@ class ArticuloController extends ControllerBase
             $this->tag->setDefault("descripcion", $articulo->getDescripcion());
             $this->tag->setDefault("descuento", $articulo->getDescuento());
             $this->tag->setDefault("envio", $articulo->getEnvio());
+            $this->tag->setDefault("ruta", $articulo->getRuta());
+
+
+
+
+
+
+            $id_imagen = $this->request->getPost("codigo_articulo");
+
+            /*$articulo = Articulo::findFirstBycodigo_categoria($codigo_categoria);
+
+            $id_imagen = $articulo->codigo_articulo;*/
+
+            if($_FILES["ruta"]["error"]>0){
+            echo "Error al cargar archivo";
+            } else {
+
+            $permitidos = array("image/gif","image/png","image/jpg");
+            $limite_kb = 2000;
+
+            if (in_array($_FILES["ruta"]["type"], $permitidos) && $_FILES["ruta"]["size"] <= $limite_kb * 1024){
+
+                $ruta = 'files/'.$id_imagen.'/';
+                $archivo = $ruta.$_FILES["ruta"]["name"];
+                $articulo->setRuta($_FILES["ruta"]["name"]);
+                if (!file_exists($ruta)){
+                    mkdir($ruta);
+                }
+
+                if (!file_exists($archivo)) {
+                    $resultado = @move_uploaded_file($_FILES["ruta"]["tmp_name"], $archivo);
+
+                    if ($resultado) {
+                        echo "Archivo Guardado";
+                        }else{
+                        echo "Error al guardar archivo";
+                    }
+
+                    }else{
+                        echo "Archivo ya existe";
+                        }
+
+                } else {
+                echo "Archivo no permitido o tamaño excedido";
+            }
+        }
+
+        
+
+            
+
+
+            /**$id_imagen = $this->tag->setDefault("codigo_articulo", $articulo->getCodigoArticulo());*/
             
         }
     }
@@ -117,6 +169,24 @@ class ArticuloController extends ControllerBase
 
                 return;
             }
+            
+            /*$taru = $articulo->ruta;
+            $borar = $articulo->codigo_articulo;
+            
+
+                unlink('/'.$taru);
+                rmdir('files/'.$borar);***********/
+
+
+                /**foreach (glob('files/'.'/*' as $borar) {*/
+                /**if(is_dir($borar)){
+                    rmdir($borar);
+                } else{
+                    unlink($borar);
+                }*/
+            /*}*/
+            
+            /*rmdir('files/'.$borar.'/');*/
 
             $this->view->codigo_categoria = $articulo->getCodigoCategoria();
 
@@ -153,7 +223,51 @@ class ArticuloController extends ControllerBase
         $articulo->setDescripcion($this->request->getPost("descripcion"));
         $articulo->setDescuento($this->request->getPost("descuento"));
         $articulo->setEnvio($this->request->getPost("envio"));
-        
+
+
+        $id_imagen = $this->request->getPost("codigo_articulo");
+        /**$rutas = 'files/'.$id_imagen.'/';
+        mkdir($rutas);*/
+
+
+        if($_FILES["archivo"]["error"]>0){
+            echo "Error al cargar archivo";
+            } else {
+
+
+            $permitidos = array("image/gif","image/png","image/jpg");
+            $limite_kb = 2000;
+
+            if (in_array($_FILES["archivo"]["type"], $permitidos) && $_FILES["archivo"]["size"] <= $limite_kb * 1024){
+
+                $ruta = 'files/'.$id_imagen.'/';
+                $archivo = $ruta.$_FILES["archivo"]["name"];
+                $articulo->setRuta($_FILES["archivo"]["name"]);
+                if (!file_exists($ruta)){
+                    mkdir($ruta);
+                }
+
+                if (!file_exists($archivo)) {
+                    $resultado = @move_uploaded_file($_FILES["archivo"]["tmp_name"], $archivo);
+
+                    if ($resultado) {
+                        echo "Archivo Guardado";
+                        }else{
+                        echo "Error al guardar archivo";
+                    }
+
+                    }else{
+                        echo "Archivo ya existe";
+                        }
+
+                } else {
+                echo "Archivo no permitido o tamaño excedido";
+            }
+        }
+
+        /*unlink('files/'.$id_imagen.'/'.$_FILES["archivo"]["name"]);
+        rmdir('files/'.$id_imagen);*/
+
 
         if (!$articulo->save()) {
             foreach ($articulo->getMessages() as $message) {
@@ -257,6 +371,14 @@ class ArticuloController extends ControllerBase
             return;
         }
 
+
+        $id_imagen = $articulo->codigo_articulo;
+        $taru = $articulo->ruta;
+
+        unlink('files/'.$id_imagen.'/'.$taru);
+        rmdir('files/'.$id_imagen);
+        
+
         if (!$articulo->delete()) {
 
             foreach ($articulo->getMessages() as $message) {
@@ -280,3 +402,4 @@ class ArticuloController extends ControllerBase
     }
 
 }
+?>

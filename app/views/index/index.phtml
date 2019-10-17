@@ -1,7 +1,74 @@
+<br>
 <div class="page-header">
-    <h1>Congratulations!</h1>
+
+    <table>
+        <tr>
+            <td rowspan="2"><img src="files/logo.jpeg" width="" height="30%"></td>
+            <td><h1><b>Bienvenido a la Tienda de Too!<b></h1></td>
+        </tr>
+        <tr>
+            <td><h2>Podras encontrar muchos articulos que te pueden ser de mucha utilidad!</h2></td>
+        </tr>
+    </table>
+    
 </div>
 
-<p>You're now flying with Phalcon. Great things are about to happen!</p>
 
-<p>This page is located at <code>views/index/index.phtml</code></p>
+<!--   ----------------------------------------------------------------------------------->
+
+<!--<p>This page is located at <code>views/index/index.phtml</code></p>-->
+<br>
+<div class="row">
+    <table width="100%" bordes:black 1px solid; class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+            <th width="15%"></th>
+            <th width="5%">Codigo</th>
+            <th width="15%" style="text-align: center;">Titulo</th>
+            <th width="7%">Precio</th>
+            <th width="15%" style="text-align: center;">Descripcion</th>
+            <th width="7%">Descuento</th>
+            <th width="7%">Envio</th>
+
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($page->items as $articulo): ?>
+            <tr>
+                <!--<td><?php echo $articulo->getCodigoCategoria() ?></td>-->
+                <td><img src="files/<?php echo $articulo->getCodigoArticulo().'/'.$articulo->getRuta();?>"></td>
+            <!--<td><?php echo "<img src='files/".$articulo->getCodigoArticulo().'/'.$articulo->getRuta() ?></td>-->
+            <td><?php echo $articulo->getCodigoArticulo() ?></td>
+            <td><?php echo $articulo->getTitulo() ?></td>
+            <td>$<?php echo $articulo->getPrecio() ?></td>
+            <td><?php echo $articulo->getDescripcion() ?></td>
+            <td>$<?php echo $articulo->getDescuento() ?></td>
+            <td><?php echo $articulo->getEnvio() ?></td>
+
+
+                
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+
+<div class="row">
+    <div class="col-sm-1">
+        <p class="pagination" style="line-height: 1.42857;padding: 6px 12px;">
+            <?php echo $page->current, "/", $page->total_pages ?>
+        </p>
+    </div>
+    <div class="col-sm-11">
+        <nav>
+            <ul class="pagination">
+                <li><?php echo $this->tag->linkTo(["/index", "Primera pagina", 'class' => 'page-link']) ?></li>
+                <li><?php echo $this->tag->linkTo(["/index?page=" . $page->before, "....", 'class' => 'page-link']) ?></li>
+                <li><?php echo $this->tag->linkTo(["/index?page=" . $page->next, "Siguiente Pagina", 'class' => 'page-link']) ?></li>
+                <li><?php echo $this->tag->linkTo(["/index?page=" . $page->last, "Ultima Pagina", 'class' => 'page-link']) ?></li>
+            </ul>
+        </nav>
+    </div>
+</div>
