@@ -4,7 +4,14 @@
  */
 ?>
 
-<?php use Phalcon\Tag; ?>
+<?php use Phalcon\Tag;  ?>
+<?php use Phalcon\Escaper;
+use Phalcon\Flash\Direct;
+
+$escaper = new Escaper();
+$flash = new Direct($escaper);
+
+?>
 
 <div class="row">
     <nav>
@@ -25,29 +32,27 @@
 
 <div class="row">
     <table class="table table-bordered">
-        <thead>
+        <thead class="thead-dark">
             <tr>
                 <th>Codigo de Departamento</th>
-            <th>Nombre de Departamento</th>
-
-                <th></th>
-                <th></th>
+                <th>Nombre de Departamento</th>
+                <th>Opciones</th>
+                
             </tr>
         </thead>
         <tbody>
         <?php foreach ($page->items as $departamento): ?>
             <tr>
                 <td><?php echo $departamento->getCodigoDepartamento() ?></td>
-            <td><?php echo $departamento->getNombreDepartamento() ?></td>
+                <td><?php echo $departamento->getNombreDepartamento() ?></td>
 
                 <td>
-                    <button class="btn btn-danger">
-                        <?php echo $this->tag->linkTo(["departamento/edit/" . $departamento->getCodigoDepartamento(), "Edit"]); ?>
-                    </button>
-                </td>
-                <td>
                     <button class="btn btn-default">
-                        <?php echo $this->tag->linkTo(["departamento/delete/" . $departamento->getCodigoDepartamento(), "Delete"]); ?>
+                        <?php echo $this->tag->linkTo(["departamento/edit/" . $departamento->getCodigoDepartamento(), "Editar"]); ?>
+                    </button>
+                
+                    <button class="btn btn-danger">
+                        <?php echo $this->tag->linkTo(["departamento/delete/" . $departamento->getCodigoDepartamento(), "Eliminar"]); ?>
                     </button>
                 </td>
             </tr>
