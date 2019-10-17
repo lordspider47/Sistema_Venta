@@ -2,7 +2,12 @@
  
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
+<<<<<<< HEAD
 use venta\Inventario;
+=======
+use Articulo;
+
+>>>>>>> 601dabf6e373270d9561c42bc03d792db630d8c5
 
 class InventarioController extends ControllerBase
 {
@@ -35,7 +40,11 @@ class InventarioController extends ControllerBase
 
         $inventario = Inventario::find($parameters);
         if (count($inventario) == 0) {
+<<<<<<< HEAD
             $this->flash->notice("The search did not find any Inventario");
+=======
+            $this->flash->notice("La búsqueda no encontró ningún articulo en inventario");
+>>>>>>> 601dabf6e373270d9561c42bc03d792db630d8c5
 
             $this->dispatcher->forward([
                 "controller" => "Inventario",
@@ -73,7 +82,11 @@ class InventarioController extends ControllerBase
 
             $inventario = Inventario::findFirstBycodigo_articulo($codigo_articulo);
             if (!$inventario) {
+<<<<<<< HEAD
                 $this->flash->error("Inventario was not found");
+=======
+                $this->flash->error("no se encontró articulo en inventario");
+>>>>>>> 601dabf6e373270d9561c42bc03d792db630d8c5
 
                 $this->dispatcher->forward([
                     'controller' => "Inventario",
@@ -125,7 +138,11 @@ class InventarioController extends ControllerBase
             return;
         }
 
+<<<<<<< HEAD
         $this->flash->success("Inventario was created successfully");
+=======
+        $this->flash->success("articulo fue agregado al inventario con éxito");
+>>>>>>> 601dabf6e373270d9561c42bc03d792db630d8c5
 
         $this->dispatcher->forward([
             'controller' => "Inventario",
@@ -153,7 +170,11 @@ class InventarioController extends ControllerBase
         $inventario = Inventario::findFirstBycodigo_articulo($codigo_articulo);
 
         if (!$inventario) {
+<<<<<<< HEAD
             $this->flash->error("Inventario does not exist " . $codigo_articulo);
+=======
+            $this->flash->error("el articulo en el inventario no existe" . $id_inventario);
+>>>>>>> 601dabf6e373270d9561c42bc03d792db630d8c5
 
             $this->dispatcher->forward([
                 'controller' => "Inventario",
@@ -183,7 +204,11 @@ class InventarioController extends ControllerBase
             return;
         }
 
+<<<<<<< HEAD
         $this->flash->success("Inventario was updated successfully");
+=======
+        $this->flash->success("inventario fue actualizado con éxito");
+>>>>>>> 601dabf6e373270d9561c42bc03d792db630d8c5
 
         $this->dispatcher->forward([
             'controller' => "Inventario",
@@ -200,7 +225,11 @@ class InventarioController extends ControllerBase
     {
         $inventario = Inventario::findFirstBycodigo_articulo($codigo_articulo);
         if (!$inventario) {
+<<<<<<< HEAD
             $this->flash->error("Inventario was not found");
+=======
+            $this->flash->error("no se encontró articulo en inventario");
+>>>>>>> 601dabf6e373270d9561c42bc03d792db630d8c5
 
             $this->dispatcher->forward([
                 'controller' => "Inventario",
@@ -224,7 +253,11 @@ class InventarioController extends ControllerBase
             return;
         }
 
+<<<<<<< HEAD
         $this->flash->success("Inventario was deleted successfully");
+=======
+        $this->flash->success("el articulo en el inventario fue eliminado con éxito");
+>>>>>>> 601dabf6e373270d9561c42bc03d792db630d8c5
 
         $this->dispatcher->forward([
             'controller' => "Inventario",

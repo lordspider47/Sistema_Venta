@@ -35,7 +35,7 @@ class DepartamentoController extends ControllerBase
 
         $departamento = Departamento::find($parameters);
         if (count($departamento) == 0) {
-            $this->flash->notice("The search did not find any departamento");
+            $this->flash->notice("NO SE ENCONTRO NINGUNA DEPARTAMENTO CON ESOS DATOS");
 
             $this->dispatcher->forward([
                 "controller" => "departamento",
@@ -73,7 +73,7 @@ class DepartamentoController extends ControllerBase
 
             $departamento = Departamento::findFirstBycodigo_departamento($codigo_departamento);
             if (!$departamento) {
-                $this->flash->error("departamento was not found");
+                $this->flash->error("EL DEPARTAMENTO NO FUE ENCONTRADA");
 
                 $this->dispatcher->forward([
                     'controller' => "departamento",
@@ -123,7 +123,7 @@ class DepartamentoController extends ControllerBase
             return;
         }
 
-        $this->flash->success("departamento was created successfully");
+        $this->flash->success("DEPARTAMENTO FUE INGRESADO CON EXITO");
 
         $this->dispatcher->forward([
             'controller' => "departamento",
@@ -151,7 +151,7 @@ class DepartamentoController extends ControllerBase
         $departamento = Departamento::findFirstBycodigo_departamento($codigo_departamento);
 
         if (!$departamento) {
-            $this->flash->error("departamento does not exist " . $codigo_departamento);
+            $this->flash->error("EL DEPARTAMENTO SE HA MODIFICADO CON EXITO" . $codigo_departamento);
 
             $this->dispatcher->forward([
                 'controller' => "departamento",
@@ -180,7 +180,7 @@ class DepartamentoController extends ControllerBase
             return;
         }
 
-        $this->flash->success("departamento was updated successfully");
+        $this->flash->success("EL DEPARTAMENTO SE HA MODIFICADO CON EXITO");
 
         $this->dispatcher->forward([
             'controller' => "departamento",
@@ -197,7 +197,7 @@ class DepartamentoController extends ControllerBase
     {
         $departamento = Departamento::findFirstBycodigo_departamento($codigo_departamento);
         if (!$departamento) {
-            $this->flash->error("departamento was not found");
+            $this->flash->error("departamento no encontrado");
 
             $this->dispatcher->forward([
                 'controller' => "departamento",
@@ -221,7 +221,7 @@ class DepartamentoController extends ControllerBase
             return;
         }
 
-        $this->flash->success("departamento was deleted successfully");
+        $this->flash->success("DEPARTAMENTO ELIMINADO CON EXITO");
 
         $this->dispatcher->forward([
             'controller' => "departamento",

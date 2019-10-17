@@ -5,6 +5,14 @@
 ?>
 
 <?php use Phalcon\Tag; ?>
+<?php use Phalcon\Escaper;
+use Phalcon\Flash\Direct;
+
+$escaper = new Escaper();
+$flash = new Direct($escaper);
+use venta\Articulo;
+
+?>
 
 <div class="row">
     <nav>
@@ -23,25 +31,54 @@
 
 <div class="row">
     <table class="table table-bordered">
-        <thead>
+        <thead class="thead-dark">
             <tr>
+<<<<<<< HEAD
                 <th>Codigo Of Articulo</th>
             <th>Id Of Inventario</th>
             <th>Cantidad</th>
 
                 <th></th>
                 <th></th>
+=======
+                <th>Id de Inventario</th>
+                <th>Cantidad</th>
+                <th>Codigo de Articulo</th>
+                <th>Articulo</th>
+                <th>Opciones</th>
+            
+>>>>>>> 601dabf6e373270d9561c42bc03d792db630d8c5
             </tr>
         </thead>
         <tbody>
         <?php foreach ($page->items as $inventario): ?>
             <tr>
+<<<<<<< HEAD
                 <td><?php echo $inventario->getCodigoArticulo() ?></td>
             <td><?php echo $inventario->getIdInventario() ?></td>
             <td><?php echo $inventario->getCantidad() ?></td>
 
                 <td><?php echo $this->tag->linkTo(["Inventario/edit/" . $inventario->getCodigoArticulo(), "Edit"]); ?></td>
                 <td><?php echo $this->tag->linkTo(["Inventario/delete/" . $inventario->getCodigoArticulo(), "Delete"]); ?></td>
+=======
+                <td><?php echo $inventario->id_inventario ?></td>
+                <td><?php echo $inventario->cantidad ?></td>
+                <td><?php echo $inventario->codigo_articulo ?></td>
+                    <?php
+                        $articulo = Articulo::findFirstBycodigo_articulo($inventario->codigo_articulo); 
+                    ?>
+                <td><?php echo $articulo->titulo ?></td>
+
+                <td>
+                    <button class="btn btn-default">
+                    <?php echo $this->tag->linkTo(["inventario/edit/" . $inventario->id_inventario, "Editar"]); ?>
+                    </button>    
+                
+                    <button class="btn btn-danger">
+                    <?php echo $this->tag->linkTo(["inventario/delete/" . $inventario->id_inventario, "Eliminar"]); ?>
+                    </button>
+                </td>
+>>>>>>> 601dabf6e373270d9561c42bc03d792db630d8c5
             </tr>
         <?php endforeach; ?>
         </tbody>
