@@ -1,0 +1,58 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="row">
+    <nav>
+        <button class="btn btn-default">
+            <?php echo $this->tag->linkTo(["departamento", "Regresar"]) ?>
+        </button>
+    </nav>
+</div>
+<hr>
+<div class="page-header">
+    <h1>
+        ESTA SEGURO QUE DESEA ELIMINAR ESTE DEPARTAMENTO?
+    </h1>
+</div>
+<hr>
+<?php echo $this->getContent(); ?>
+
+<?php
+    echo $this->tag->form(
+        [
+            "departamento/save",
+            "autocomplete" => "off",
+            "class" => "form-horizontal"
+        ]
+    );
+?>
+
+<div class="form-group">
+    <label for="fieldCodigoDepartamento" class="col-sm-4 control-label">Codigo de Departamento</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["codigo_departamento", "type" => "number", "class" => "form-control", "id" => "fieldCodigoDepartamento"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldNombreDepartamento" class="col-sm-4 control-label">Nombre de Departamento</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["nombre_departamento", "size" => 30, "class" => "form-control", "id" => "fieldNombreDepartamento"]) ?>
+    </div>
+</div>
+
+<button class="btn btn-danger"><?php echo $this->tag->linkTo(["departamento/delete/" . $codigo_categoria, "Borrar"]); ?></button>
+<hr>
+
+<!--<?php echo $this->tag->hiddenField("id") ?>
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php echo $this->tag->submitButton(["Guardar", "class" => "btn btn-success"]) ?>
+    </div>
+</div>
+
+<?php echo $this->tag->endForm(); ?>-->

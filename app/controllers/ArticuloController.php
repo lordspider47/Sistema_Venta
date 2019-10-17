@@ -3,6 +3,7 @@
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 use venta\Articulo;
+use venta\Inventario;
 
 class ArticuloController extends ControllerBase
 {
@@ -159,7 +160,23 @@ class ArticuloController extends ControllerBase
         if (!$this->request->isPost()) {
 
             $articulo = Articulo::findFirstBycodigo_categoria($codigo_categoria);
-            if (!$articulo) {
+            $codigo = $articulo->codigo_articulo;
+            $inventario = Inventario::findFirstBycodigo_articulo($codigo);
+            if ($inventario->codigo_articulo == $articulo->codigo_articulo) {
+
+                $this->flash->error("NO SE PUEDE ELIMINAR EL ARTICULO PORQUE TIENE UN INVENTARIO ASIGNADO A ESTE");
+                $this->dispatcher->forward([
+                    "controller" => "articulo",
+                    "action" => "search"
+
+                ]);
+                return;
+
+            }
+
+
+
+            /*if (!$articulo) {
                 $this->flash->error("EL ARTICULO NO HA SIDO ENCONTRADO");
 
                 $this->dispatcher->forward([
@@ -168,7 +185,7 @@ class ArticuloController extends ControllerBase
                 ]);
 
                 return;
-            }
+            }*/
             
             /*$taru = $articulo->ruta;
             $borar = $articulo->codigo_articulo;

@@ -3,6 +3,7 @@
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 use venta\Departamento;
+use venta\Categoria;
 
 class DepartamentoController extends ControllerBase
 {
@@ -90,6 +91,67 @@ class DepartamentoController extends ControllerBase
             
         }
     }
+
+
+
+    /**
+     * Edits a departamento
+     *
+     * @param string $codigo_departamento
+     */
+    public function eliminarAction($codigo_departamento)
+    {
+        if (!$this->request->isPost()) {
+
+            
+            $departamento = Departamento::findFirstBycodigo_departamento($codigo_departamento);
+            $codigo = $departamento->codigo_departamento;
+            $categoria = Categoria::findFirstBycodigo_departamento($codigo);
+
+            
+            
+
+            if ($categoria->codigo_departamento == $departamento->codigo_departamento) {
+
+                $this->flash->error("NO SE PUEDE ELIMINAR EL DEPARTAMENTO PORQUE TIENE UNA CATEGORIA ASIGNADA A ESTE");
+                $this->dispatcher->forward([
+                    "controller" => "departamento",
+                    "action" => "search"
+
+                ]);
+                return;
+
+            }
+
+
+
+
+            if (!$departamento) {
+                $this->flash->error("EL DEPARTAMENTO NO FUE ENCONTRADA");
+
+                $this->dispatcher->forward([
+                    'controller' => "departamento",
+                    'action' => 'index'
+                ]);
+
+                return;
+            }
+
+            $this->view->codigo_departamento = $departamento->getCodigoDepartamento();
+
+            $this->tag->setDefault("codigo_departamento", $departamento->getCodigoDepartamento());
+            $this->tag->setDefault("nombre_departamento", $departamento->getNombreDepartamento());
+            
+        }
+    }
+
+
+
+
+
+
+
+
 
     /**
      * Creates a new departamento

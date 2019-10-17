@@ -36,7 +36,7 @@ class InventarioController extends ControllerBase
         $parameters["order"] = "codigo_articulo";
 
         $inventario = Inventario::find($parameters);
-        if (count($inventario) == 0) {
+        if (count($inventario) == 111111) {
             $this->flash->notice("La búsqueda no encontró ningún articulo en inventario");
 
             $this->dispatcher->forward([
