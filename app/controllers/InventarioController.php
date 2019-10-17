@@ -2,7 +2,7 @@
  
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
-
+use venta\Inventario;
 
 class InventarioController extends ControllerBase
 {
@@ -15,13 +15,13 @@ class InventarioController extends ControllerBase
     }
 
     /**
-     * Searches for inventario
+     * Searches for Inventario
      */
     public function searchAction()
     {
         $numberPage = 1;
         if ($this->request->isPost()) {
-            $query = Criteria::fromInput($this->di, 'Inventario', $_POST);
+            $query = Criteria::fromInput($this->di, '\venta\Inventario', $_POST);
             $this->persistent->parameters = $query->getParams();
         } else {
             $numberPage = $this->request->getQuery("page", "int");
@@ -31,14 +31,14 @@ class InventarioController extends ControllerBase
         if (!is_array($parameters)) {
             $parameters = [];
         }
-        $parameters["order"] = "id_inventario";
+        $parameters["order"] = "codigo_articulo";
 
         $inventario = Inventario::find($parameters);
         if (count($inventario) == 0) {
-            $this->flash->notice("The search did not find any inventario");
+            $this->flash->notice("The search did not find any Inventario");
 
             $this->dispatcher->forward([
-                "controller" => "inventario",
+                "controller" => "Inventario",
                 "action" => "index"
             ]);
 
@@ -63,43 +63,43 @@ class InventarioController extends ControllerBase
     }
 
     /**
-     * Edits a inventario
+     * Edits a Inventario
      *
-     * @param string $id_inventario
+     * @param string $codigo_articulo
      */
-    public function editAction($id_inventario)
+    public function editAction($codigo_articulo)
     {
         if (!$this->request->isPost()) {
 
-            $inventario = Inventario::findFirstByid_inventario($id_inventario);
+            $inventario = Inventario::findFirstBycodigo_articulo($codigo_articulo);
             if (!$inventario) {
-                $this->flash->error("inventario was not found");
+                $this->flash->error("Inventario was not found");
 
                 $this->dispatcher->forward([
-                    'controller' => "inventario",
+                    'controller' => "Inventario",
                     'action' => 'index'
                 ]);
 
                 return;
             }
 
-            $this->view->id_inventario = $inventario->id_inventario;
+            $this->view->codigo_articulo = $inventario->getCodigoArticulo();
 
-            $this->tag->setDefault("id_inventario", $inventario->id_inventario);
-            $this->tag->setDefault("cantidad", $inventario->cantidad);
-            $this->tag->setDefault("codigo_articulo", $inventario->codigo_articulo);
+            $this->tag->setDefault("codigo_articulo", $inventario->getCodigoArticulo());
+            $this->tag->setDefault("id_inventario", $inventario->getIdInventario());
+            $this->tag->setDefault("cantidad", $inventario->getCantidad());
             
         }
     }
 
     /**
-     * Creates a new inventario
+     * Creates a new Inventario
      */
     public function createAction()
     {
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "inventario",
+                'controller' => "Inventario",
                 'action' => 'index'
             ]);
 
@@ -107,9 +107,9 @@ class InventarioController extends ControllerBase
         }
 
         $inventario = new Inventario();
-        $inventario->idInventario = $this->request->getPost("id_inventario");
-        $inventario->cantidad = $this->request->getPost("cantidad");
-        $inventario->codigoArticulo = $this->request->getPost("codigo_articulo");
+        $inventario->setCodigoArticulo($this->request->getPost("codigo_articulo"));
+        $inventario->setIdInventario($this->request->getPost("id_inventario"));
+        $inventario->setCantidad($this->request->getPost("cantidad"));
         
 
         if (!$inventario->save()) {
@@ -118,23 +118,23 @@ class InventarioController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "inventario",
+                'controller' => "Inventario",
                 'action' => 'new'
             ]);
 
             return;
         }
 
-        $this->flash->success("inventario was created successfully");
+        $this->flash->success("Inventario was created successfully");
 
         $this->dispatcher->forward([
-            'controller' => "inventario",
+            'controller' => "Inventario",
             'action' => 'index'
         ]);
     }
 
     /**
-     * Saves a inventario edited
+     * Saves a Inventario edited
      *
      */
     public function saveAction()
@@ -142,30 +142,30 @@ class InventarioController extends ControllerBase
 
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "inventario",
+                'controller' => "Inventario",
                 'action' => 'index'
             ]);
 
             return;
         }
 
-        $id_inventario = $this->request->getPost("id_inventario");
-        $inventario = Inventario::findFirstByid_inventario($id_inventario);
+        $codigo_articulo = $this->request->getPost("codigo_articulo");
+        $inventario = Inventario::findFirstBycodigo_articulo($codigo_articulo);
 
         if (!$inventario) {
-            $this->flash->error("inventario does not exist " . $id_inventario);
+            $this->flash->error("Inventario does not exist " . $codigo_articulo);
 
             $this->dispatcher->forward([
-                'controller' => "inventario",
+                'controller' => "Inventario",
                 'action' => 'index'
             ]);
 
             return;
         }
 
-        $inventario->idInventario = $this->request->getPost("id_inventario");
-        $inventario->cantidad = $this->request->getPost("cantidad");
-        $inventario->codigoArticulo = $this->request->getPost("codigo_articulo");
+        $inventario->setCodigoArticulo($this->request->getPost("codigo_articulo"));
+        $inventario->setIdInventario($this->request->getPost("id_inventario"));
+        $inventario->setCantidad($this->request->getPost("cantidad"));
         
 
         if (!$inventario->save()) {
@@ -175,35 +175,35 @@ class InventarioController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "inventario",
+                'controller' => "Inventario",
                 'action' => 'edit',
-                'params' => [$inventario->id_inventario]
+                'params' => [$inventario->getCodigoArticulo()]
             ]);
 
             return;
         }
 
-        $this->flash->success("inventario was updated successfully");
+        $this->flash->success("Inventario was updated successfully");
 
         $this->dispatcher->forward([
-            'controller' => "inventario",
+            'controller' => "Inventario",
             'action' => 'index'
         ]);
     }
 
     /**
-     * Deletes a inventario
+     * Deletes a Inventario
      *
-     * @param string $id_inventario
+     * @param string $codigo_articulo
      */
-    public function deleteAction($id_inventario)
+    public function deleteAction($codigo_articulo)
     {
-        $inventario = Inventario::findFirstByid_inventario($id_inventario);
+        $inventario = Inventario::findFirstBycodigo_articulo($codigo_articulo);
         if (!$inventario) {
-            $this->flash->error("inventario was not found");
+            $this->flash->error("Inventario was not found");
 
             $this->dispatcher->forward([
-                'controller' => "inventario",
+                'controller' => "Inventario",
                 'action' => 'index'
             ]);
 
@@ -217,17 +217,17 @@ class InventarioController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "inventario",
+                'controller' => "Inventario",
                 'action' => 'search'
             ]);
 
             return;
         }
 
-        $this->flash->success("inventario was deleted successfully");
+        $this->flash->success("Inventario was deleted successfully");
 
         $this->dispatcher->forward([
-            'controller' => "inventario",
+            'controller' => "Inventario",
             'action' => "index"
         ]);
     }
