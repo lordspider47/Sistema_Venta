@@ -16,15 +16,19 @@ use venta\Articulo;
 
 <div class="row">
     <nav>
-        <ul class="pager">
-            <li class="previous"><?php echo $this->tag->linkTo(["Inventario/index", "Go Back"]); ?></li>
-            <li class="next"><?php echo $this->tag->linkTo(["Inventario/new", "Create "]); ?></li>
-        </ul>
+        <button class="btn btn-default">
+            <?php echo $this->tag->linkTo(["Inventario/index", "Regresar"]) ?>
+        </button>
+        <button class="btn btn-default">
+            <?php echo $this->tag->linkTo(["Inventario/new", "Crear"]) ?>
+        </button>
     </nav>
 </div>
 
+<hr>
+
 <div class="page-header">
-    <h1>Search result</h1>
+    <h1>Resultados de la busqueda</h1>
 </div>
 
 <?php echo $this->getContent(); ?>
@@ -33,52 +37,36 @@ use venta\Articulo;
     <table class="table table-bordered">
         <thead class="thead-dark">
             <tr>
-<<<<<<< HEAD
-                <th>Codigo Of Articulo</th>
-            <th>Id Of Inventario</th>
-            <th>Cantidad</th>
 
-                <th></th>
-                <th></th>
-=======
                 <th>Id de Inventario</th>
                 <th>Cantidad</th>
                 <th>Codigo de Articulo</th>
                 <th>Articulo</th>
                 <th>Opciones</th>
             
->>>>>>> 601dabf6e373270d9561c42bc03d792db630d8c5
             </tr>
         </thead>
         <tbody>
         <?php foreach ($page->items as $inventario): ?>
             <tr>
-<<<<<<< HEAD
-                <td><?php echo $inventario->getCodigoArticulo() ?></td>
-            <td><?php echo $inventario->getIdInventario() ?></td>
-            <td><?php echo $inventario->getCantidad() ?></td>
 
-                <td><?php echo $this->tag->linkTo(["Inventario/edit/" . $inventario->getCodigoArticulo(), "Edit"]); ?></td>
-                <td><?php echo $this->tag->linkTo(["Inventario/delete/" . $inventario->getCodigoArticulo(), "Delete"]); ?></td>
-=======
-                <td><?php echo $inventario->id_inventario ?></td>
-                <td><?php echo $inventario->cantidad ?></td>
-                <td><?php echo $inventario->codigo_articulo ?></td>
+                <td><?php echo $inventario->getIdInventario() ?></td>
+                <td><?php echo $inventario->getCantidad() ?></td>
+                <td><?php echo $inventario->getCodigoArticulo() ?></td>
                     <?php
-                        $articulo = Articulo::findFirstBycodigo_articulo($inventario->codigo_articulo); 
+                        $articulo = Articulo::findFirstBycodigo_articulo($inventario->getCodigoArticulo()); 
                     ?>
                 <td><?php echo $articulo->titulo ?></td>
 
                 <td>
                     <button class="btn btn-default">
-                    <?php echo $this->tag->linkTo(["inventario/edit/" . $inventario->id_inventario, "Editar"]); ?>
+                    <?php echo $this->tag->linkTo(["inventario/edit/" . $inventario->getCodigoArticulo(), "Editar"]); ?>
                     </button>    
                 
                     <button class="btn btn-danger">
-                    <?php echo $this->tag->linkTo(["inventario/delete/" . $inventario->id_inventario, "Eliminar"]); ?>
+                    <?php echo $this->tag->linkTo(["inventario/delete/" . $inventario->getCodigoArticulo(), "Eliminar"]); ?>
                     </button>
                 </td>
->>>>>>> 601dabf6e373270d9561c42bc03d792db630d8c5
             </tr>
         <?php endforeach; ?>
         </tbody>
@@ -94,10 +82,10 @@ use venta\Articulo;
     <div class="col-sm-11">
         <nav>
             <ul class="pagination">
-                <li><?php echo $this->tag->linkTo(["Inventario/search", "First", 'class' => 'page-link']) ?></li>
-                <li><?php echo $this->tag->linkTo(["Inventario/search?page=" . $page->before, "Previous", 'class' => 'page-link']) ?></li>
-                <li><?php echo $this->tag->linkTo(["Inventario/search?page=" . $page->next, "Next", 'class' => 'page-link']) ?></li>
-                <li><?php echo $this->tag->linkTo(["Inventario/search?page=" . $page->last, "Last", 'class' => 'page-link']) ?></li>
+                <li><?php echo $this->tag->linkTo(["Inventario/search", "Primero", 'class' => 'page-link']) ?></li>
+                <li><?php echo $this->tag->linkTo(["Inventario/search?page=" . $page->before, "Anterior", 'class' => 'page-link']) ?></li>
+                <li><?php echo $this->tag->linkTo(["Inventario/search?page=" . $page->next, "Siguiente", 'class' => 'page-link']) ?></li>
+                <li><?php echo $this->tag->linkTo(["Inventario/search?page=" . $page->last, "Ultimo", 'class' => 'page-link']) ?></li>
             </ul>
         </nav>
     </div>

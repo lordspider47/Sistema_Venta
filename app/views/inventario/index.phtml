@@ -5,12 +5,16 @@
 ?>
 
 <div class="page-header">
+    <hr>
+    <button class="btn btn-default">
+        <?php echo $this->tag->linkTo(["Inventario/new", "Agregar nuevo articulo al inventario"]) ?>
+    </button>
+
+    <hr>
     <h1>
-        Search Inventario
+        Buscar articulo en inventario
     </h1>
-    <p>
-        <?php echo $this->tag->linkTo(["Inventario/new", "Create Inventario"]) ?>
-    </p>
+
 </div>
 
 <?php echo $this->getContent() ?>
@@ -26,14 +30,14 @@
 ?>
 
 <div class="form-group">
-    <label for="fieldCodigoArticulo" class="col-sm-2 control-label">Codigo Of Articulo</label>
+    <label for="fieldCodigoArticulo" class="col-sm-2 control-label">Codigo de Articulo</label>
     <div class="col-sm-10">
         <?php echo $this->tag->textField(["codigo_articulo", "type" => "number", "class" => "form-control", "id" => "fieldCodigoArticulo"]) ?>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="fieldIdInventario" class="col-sm-2 control-label">Id Of Inventario</label>
+    <label for="fieldIdInventario" class="col-sm-2 control-label">Id de Inventario</label>
     <div class="col-sm-10">
         <?php echo $this->tag->textField(["id_inventario", "type" => "number", "class" => "form-control", "id" => "fieldIdInventario"]) ?>
     </div>
@@ -46,10 +50,11 @@
     </div>
 </div>
 
+<hr>
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-        <?php echo $this->tag->submitButton(["Search", "class" => "btn btn-default"]) ?>
+        <?php echo $this->tag->submitButton(["Buscar", "class" => "btn btn-default"]) ?>
     </div>
 </div>
 
