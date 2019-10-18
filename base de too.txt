@@ -1,0 +1,47 @@
+
+CREATE TABLE departamento(
+	codigo_departamento VARCHAR(50) NOT NULL,
+	nombre_departamento VARCHAR(100) NOT NULL,
+	CONSTRAINT PK_departamento PRIMARY KEY (codigo_departamento));
+
+CREATE TABLE categoria(
+	codigo_categoria VARCHAR(50) NOT NULL,
+	nombre_categoria VARCHAR(100) NOT NULL,
+	codigo_departamento VARCHAR(50) NOT NULL,
+	CONSTRAINT PK_categoria PRIMARY KEY (codigo_categoria));
+
+CREATE TABLE articulo(
+	codigo_categoria VARCHAR(50) NOT NULL,
+	codigo_articulo VARCHAR(50) NOT NULL,
+	titulo VARCHAR(100) NOT NULL,
+	precio FLOAT NOT NULL,
+	descripcion VARCHAR(500) NOT NULL, 
+	descuento FLOAT NOT NULL,
+	envio VARCHAR(50) NOT NULL,
+	ruta VARCHAR(240) NOT NULL,
+	CONSTRAINT PK_articulo PRIMARY KEY (codigo_articulo));
+
+CREATE TABLE inventario(
+	id_inventario INT NOT NULL,
+	cantidad INT NOT NULL,
+	codigo_articulo VARCHAR(50) NOT NULL,
+	CONSTRAINT PK_inventario PRIMARY KEY (id_inventario));
+
+ALTER TABLE categoria 
+ADD CONSTRAINT FK_categoria_departamento 
+FOREIGN KEY (codigo_departamento) 
+REFERENCES departamento (codigo_departamento);
+
+ALTER TABLE articulo 
+ADD CONSTRAINT FK_articulo_categoria 
+FOREIGN KEY (codigo_categoria) 
+REFERENCES categoria (codigo_categoria);
+
+ALTER TABLE inventario 
+ADD CONSTRAINT FK_articulo_inventario 
+FOREIGN KEY (codigo_articulo) 
+REFERENCES articulo (codigo_articulo);
+
+
+
+
