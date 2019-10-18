@@ -13,14 +13,15 @@ $flash = new Direct($escaper);
 use venta\Articulo;
 
 ?>
-
+<br>
+<br>
 <div class="row">
     <nav>
         <button class="btn btn-default">
             <?php echo $this->tag->linkTo(["Inventario/index", "Regresar"]) ?>
         </button>
         <button class="btn btn-default">
-            <?php echo $this->tag->linkTo(["Inventario/new", "Crear"]) ?>
+            <?php echo $this->tag->linkTo(["Inventario/new", "Crear Inventario a Articulo"]) ?>
         </button>
     </nav>
 </div>
@@ -28,7 +29,7 @@ use venta\Articulo;
 <hr>
 
 <div class="page-header">
-    <h1>Resultados de la busqueda</h1>
+    <h1>Inventario</h1>
 </div>
 
 <?php echo $this->getContent(); ?>
