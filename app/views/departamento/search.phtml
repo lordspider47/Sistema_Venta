@@ -17,7 +17,7 @@ $flash = new Direct($escaper);
 <div class="row">
     <nav>
         <button class="btn btn-default">
-            <?php echo $this->tag->linkTo(["departamento", "Regresar"]) ?>
+            <?php echo $this->tag->linkTo(["/", "Regresar"]) ?>
         </button>
         <button class="btn btn-default">
             <?php echo $this->tag->linkTo(["departamento/new", "Crear"]) ?>
@@ -37,7 +37,7 @@ $flash = new Direct($escaper);
             <tr>
                 <th>Codigo de Departamento</th>
                 <th>Nombre de Departamento</th>
-                <th>Opciones</th>
+                <th style="text-align: center" colspan="3">Opciones</th>
                 
             </tr>
         </thead>
@@ -55,6 +55,7 @@ $flash = new Direct($escaper);
                     <button class="btn btn-danger">
                         <?php echo $this->tag->linkTo(["departamento/eliminar/" . $departamento->getCodigoDepartamento(), "Eliminar"]); ?>
                     </button>
+                    <td><?php echo $this->tag->linkTo(["categoria/new/" . $departamento->getCodigoDepartamento(), "Agregar Categoria"]); ?></td>
                 </td>
             </tr>
         <?php endforeach; ?>

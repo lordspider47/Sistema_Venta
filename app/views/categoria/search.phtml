@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 
 /**
@@ -20,8 +20,8 @@ $flash = new Direct($escaper);
 <div class="row">
     <nav>
         <ul class="pager">
-            <button class="btn btn-default" class="previous"><?php echo $this->tag->linkTo(["categoria/index", "Atras"]); ?></button>
-            <button class="btn btn-default" class="next"><?php echo $this->tag->linkTo(["categoria/new", "Crear Categoria "]); ?></button>
+            <button class="btn btn-default" class="previous"><?php echo $this->tag->linkTo(["/", "Atras"]); ?></button>
+            <!--<button class="btn btn-default" class="next"><?php echo $this->tag->linkTo(["categoria/new", "Crear Categoria "]); ?></button>-->
         </ul>
     </nav>
 </div>
@@ -40,7 +40,7 @@ $flash = new Direct($escaper);
             <th>Nombre de Categoria</th>
             <th>Codigo de Departamento</th>
 
-                <th style="text-align: center" colspan="2">Acciones</th>
+                <th style="text-align: center" colspan="3">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -52,6 +52,7 @@ $flash = new Direct($escaper);
 
                 <td><?php echo $this->tag->linkTo(["categoria/edit/" . $categoria->getCodigoCategoria(), "Editar"]); ?></td>
                 <td><?php echo $this->tag->linkTo(["categoria/eliminar/" . $categoria->getCodigoCategoria(), "Borrar"]); ?></td>
+                <td><?php echo $this->tag->linkTo(["articulo/new/" . $categoria->getCodigoCategoria(), "Ingresar Articulo"]); ?></td>
             </tr>
         <?php endforeach; ?>
         </tbody>

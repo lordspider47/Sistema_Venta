@@ -4,6 +4,7 @@ use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 use venta\Articulo;
 use venta\Inventario;
+use venta\Categoria;
 
 class ArticuloController extends ControllerBase
 {
@@ -58,8 +59,11 @@ class ArticuloController extends ControllerBase
     /**
      * Displays the creation form
      */
-    public function newAction()
+    public function newAction($codigo_categoria)
     {
+        $categoria = Categoria::findFirstBycodigo_categoria($codigo_categoria);
+        $this->view->codigo_categoria = $categoria->getCodigoCategoria();
+        $this->tag->setDefault("codigo_categoria", $categoria->getCodigoCategoria());
 
     }
 
@@ -83,6 +87,13 @@ class ArticuloController extends ControllerBase
 
                 return;
             }
+            
+
+
+
+
+
+
             $this->view->codigo_categoria = $articulo->getCodigoCategoria();
 
             $this->tag->setDefault("codigo_categoria", $articulo->getCodigoCategoria());
@@ -227,6 +238,20 @@ class ArticuloController extends ControllerBase
             $this->dispatcher->forward([
                 'controller' => "articulo",
                 'action' => 'index'
+            ]);
+
+            return;
+        }
+
+        $codigo_articulo = $this->request->getPost("codigo_articulo");
+        $articulo = Articulo::findFirstBycodigo_articulo($codigo_articulo);
+
+        if ($articulo) {
+            $this->flash->error("EL CODIGO **" . $codigo_categoria. "**DE ARTICULO YA EXISTE, POR FAVOR INGRESAR OTRO");
+
+            $this->dispatcher->forward([
+                'controller' => "categoria",
+                'action' => 'search'
             ]);
 
             return;

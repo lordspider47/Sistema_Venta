@@ -35,7 +35,7 @@ class DepartamentoController extends ControllerBase
         $parameters["order"] = "codigo_departamento";
 
         $departamento = Departamento::find($parameters);
-        if (count($departamento) == 0) {
+        if (count($departamento) == 1111111110) {
             $this->flash->notice("NO SE ENCONTRO NINGUNA DEPARTAMENTO CON ESOS DATOS");
 
             $this->dispatcher->forward([
@@ -60,6 +60,7 @@ class DepartamentoController extends ControllerBase
      */
     public function newAction()
     {
+        
 
     }
 
@@ -146,13 +147,6 @@ class DepartamentoController extends ControllerBase
     }
 
 
-
-
-
-
-
-
-
     /**
      * Creates a new departamento
      */
@@ -162,6 +156,20 @@ class DepartamentoController extends ControllerBase
             $this->dispatcher->forward([
                 'controller' => "departamento",
                 'action' => 'index'
+            ]);
+
+            return;
+        }
+
+        $codigo_departamento = $this->request->getPost("codigo_departamento");
+        $departamento = Departamento::findFirstBycodigo_departamento($codigo_departamento);
+
+        if ($departamento) {
+            $this->flash->error("EL CODIGO **". $codigo_departamento ."** YA EXISTE POR FAVOR INGRESE OTRO");
+
+            $this->dispatcher->forward([
+                'controller' => "departamento",
+                'action' => 'new'
             ]);
 
             return;

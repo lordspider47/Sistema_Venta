@@ -59,8 +59,11 @@ class InventarioController extends ControllerBase
     /**
      * Displays the creation form
      */
-    public function newAction()
+    public function newAction($codigo_articulo)
     {
+        $articulo = Articulo::findFirstBycodigo_articulo($codigo_articulo);
+        $this->view->codigo_articulo = $articulo->getCodigoArticulo();
+        $this->tag->setDefault("codigo_articulo", $articulo->getCodigoArticulo());
 
     }
 
@@ -108,8 +111,24 @@ class InventarioController extends ControllerBase
             return;
         }
 
+        $codigo_articulo = $this->request->getPost("codigo_articulo");
+        $inventario = Inventario::findFirstBycodigo_articulo($codigo_articulo);
+
+        if ($inventario) {
+            $this->flash->error("EL ARTICULO CON CODIGO**". $codigo_articulo."** YA POSEE INVENTARIO" );
+
+            $this->dispatcher->forward([
+                'controller' => "articulo",
+                'action' => 'search'
+            ]);
+
+            return;
+        }
+
+
         $inventario = new Inventario();
-        $inventario->setCodigoArticulo($this->request->getPost("codigo_articulo"));
+        
+        $inventario->setCodigoArticulo($this->request->getPost("codigo_articulo")); 
         $inventario->setIdInventario($this->request->getPost("id_inventario"));
         $inventario->setCantidad($this->request->getPost("cantidad"));
         

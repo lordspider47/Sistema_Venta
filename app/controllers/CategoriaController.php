@@ -4,6 +4,7 @@ use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 use venta\Categoria;
 use venta\Articulo;
+use venta\Departamento;
 
 class CategoriaController extends ControllerBase
 {
@@ -58,8 +59,11 @@ class CategoriaController extends ControllerBase
     /**
      * Displays the creation form
      */
-    public function newAction()
+    public function newAction($codigo_departamento)
     {
+        $departamento = Departamento::findFirstBycodigo_departamento($codigo_departamento);
+        $this->view->codigo_departamento = $departamento->getCodigoDepartamento();
+        $this->tag->setDefault("codigo_departamento", $departamento->getCodigoDepartamento());
 
     }
 
@@ -182,6 +186,20 @@ class CategoriaController extends ControllerBase
             $this->dispatcher->forward([
                 'controller' => "categoria",
                 'action' => 'index'
+            ]);
+
+            return;
+        }
+
+        $codigo_categoria = $this->request->getPost("codigo_categoria");
+        $categoria = Categoria::findFirstBycodigo_categoria($codigo_categoria);
+
+        if ($categoria) {
+            $this->flash->error("EL CODIGO **". $codigo_categoria. "** DE CATEGORIA YA EXISTE, POR FAVOR INGRESE OTRO " );
+
+            $this->dispatcher->forward([
+                'controller' => "departamento",
+                'action' => 'search'
             ]);
 
             return;

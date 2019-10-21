@@ -1,19 +1,19 @@
 
 CREATE TABLE departamento(
-	codigo_departamento VARCHAR(50) NOT NULL,
-	nombre_departamento VARCHAR(100) NOT NULL,
+	codigo_departamento VARCHAR(50) NOT NULL UNIQUE,
+	nombre_departamento VARCHAR(100) NOT NULL UNIQUE,
 	CONSTRAINT PK_departamento PRIMARY KEY (codigo_departamento));
 
 CREATE TABLE categoria(
-	codigo_categoria VARCHAR(50) NOT NULL,
+	codigo_categoria VARCHAR(50) NOT NULL UNIQUE,
 	nombre_categoria VARCHAR(100) NOT NULL,
 	codigo_departamento VARCHAR(50) NOT NULL,
 	CONSTRAINT PK_categoria PRIMARY KEY (codigo_categoria));
 
 CREATE TABLE articulo(
 	codigo_categoria VARCHAR(50) NOT NULL,
-	codigo_articulo VARCHAR(50) NOT NULL,
-	titulo VARCHAR(100) NOT NULL,
+	codigo_articulo VARCHAR(50) NOT NULL UNIQUE,
+	titulo VARCHAR(100) NOT NULL UNIQUE,
 	precio FLOAT NOT NULL,
 	descripcion VARCHAR(500) NOT NULL, 
 	descuento FLOAT NOT NULL,
@@ -22,9 +22,9 @@ CREATE TABLE articulo(
 	CONSTRAINT PK_articulo PRIMARY KEY (codigo_articulo));
 
 CREATE TABLE inventario(
-	id_inventario INT NOT NULL,
+	id_inventario INT NOT NULL UNIQUE,
 	cantidad INT NOT NULL,
-	codigo_articulo VARCHAR(50) NOT NULL,
+	codigo_articulo VARCHAR(50) NOT NULL UNIQUE,
 	CONSTRAINT PK_inventario PRIMARY KEY (id_inventario));
 
 ALTER TABLE categoria 

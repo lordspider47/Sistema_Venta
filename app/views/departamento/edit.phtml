@@ -30,16 +30,21 @@
     );
 ?>
 
+
+
+
 <div class="form-group">
-    <label for="fieldCodigoDepartamento" class="col-sm-4 control-label">Codigo de Departamento</label>
-    <input readonly class="col-sm-10" <?php echo $this->tag->textField(["codigo_departamento", "type" => "number", "class" => "form-control", "id" => "fieldCodigoDepartamento"]) ?> 
-    <!--<div class="col-sm-10">
-        <?php echo $this->tag->textField(["codigo_departamento", "type" => "number", "class" => "form-control", "id" => "fieldCodigoDepartamento"]) ?>
-    </div>-->
+    <label for="fieldCodigoDepartamento" class="col-sm-4 control-label"><b>Codigo de Departamento</b></label>
+    <div class="col-sm-10">
+
+    <input readonly <?php echo $this->tag->textField(["codigo_departamento", "type" => "number", "class" => "form-control", "id" => "fieldCodigoDepartamento"]) ?> 
+    
+        
+    </div>
 </div>
 
 <div class="form-group">
-    <label for="fieldNombreDepartamento" class="col-sm-4 control-label">Nombre de Departamento</label>
+    <label for="fieldNombreDepartamento" class="col-sm-4 control-label"><b>Nombre de Departamento</b></label>
     <div class="col-sm-10">
         <?php echo $this->tag->textField(["nombre_departamento", "size" => 30, "class" => "form-control", "id" => "fieldNombreDepartamento"]) ?>
     </div>

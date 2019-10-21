@@ -29,25 +29,24 @@
         ]
     );
 ?>
-
+<br>
 <div class="form-group">
-    <label for="fieldCodigoDepartamento" class="col-sm-2 control-label">Codigo de Departamento</label>
-    <input readonly class="col-sm-10" <?php echo $this->tag->textField(["codigo_departamento", "type" => "number", "class" => "form-control", "id" => "fieldCodigoDepartamento"]) ?> >
-    <!--<div class="col-sm-10">
-        <?php echo $this->tag->textField(["codigo_departamento", "type" => "number", "class" => "form-control", "id" => "fieldCodigoDepartamento"]) ?>
-    </div>-->
+    <label for="fieldCodigoDepartamento" class="col-sm-4 control-label"><b>Codigo de Departamento</b></label>
+    <div class="col-sm-10">
+    <input readonly <?php echo $this->tag->textField(["codigo_departamento", "type" => "number", "class" => "form-control", "id" => "fieldCodigoDepartamento"]) ?> 
+    </div>
 </div>
 
 <div class="form-group">
-    <label for="fieldCodigoCategoria" class="col-sm-2 control-label">Codigo de Categoria</label>
-    <input readonly class="col-sm-10" <?php echo $this->tag->textField(["codigo_categoria", "type" => "number", "class" => "form-control", "id" => "fieldCodigoCategoria"]) ?> >
-    <!--<div class="col-sm-10">
-        <?php echo $this->tag->textField(["codigo_categoria", "type" => "number", "class" => "form-control", "id" => "fieldCodigoCategoria"]) ?>
-    </div>-->
+    <label for="fieldCodigoCategoria" class="col-sm-2 control-label"><b>Codigo de Categoria</b></label>
+    <div class="col-sm-10">
+    <input readonly <?php echo $this->tag->textField(["codigo_categoria", "type" => "number", "class" => "form-control", "id" => "fieldCodigoCategoria"]) ?> 
+        </div>
+    </div>
 </div>
 
 <div class="form-group">
-    <label for="fieldNombreCategoria" class="col-sm-2 control-label">Nombre de Categoria</label>
+    <label for="fieldNombreCategoria" class="col-sm-2 control-label"><b>Nombre de Categoria</b></label>
     <div class="col-sm-10">
         <?php echo $this->tag->textField(["nombre_categoria", "size" => 30, "class" => "form-control", "id" => "fieldNombreCategoria"]) ?>
     </div>

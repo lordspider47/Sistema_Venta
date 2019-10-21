@@ -18,11 +18,11 @@ use venta\Articulo;
 <div class="row">
     <nav>
         <button class="btn btn-default">
-            <?php echo $this->tag->linkTo(["Inventario/index", "Regresar"]) ?>
+            <?php echo $this->tag->linkTo(["/", "Regresar"]) ?>
         </button>
-        <button class="btn btn-default">
-            <?php echo $this->tag->linkTo(["Inventario/new", "Crear Inventario a Articulo"]) ?>
-        </button>
+        <!--<button class="btn btn-default">
+            <?php echo $this->tag->linkTo(["/", "Atras"]) ?>
+        </button>-->
     </nav>
 </div>
 
@@ -64,7 +64,7 @@ use venta\Articulo;
                     <?php echo $this->tag->linkTo(["inventario/edit/" . $inventario->getCodigoArticulo(), "Editar"]); ?>
                     </button>    
                 
-                    <button class="btn btn-danger">
+                    <button class="btn btn-default">
                     <?php echo $this->tag->linkTo(["inventario/delete/" . $inventario->getCodigoArticulo(), "Eliminar"]); ?>
                     </button>
                 </td>
