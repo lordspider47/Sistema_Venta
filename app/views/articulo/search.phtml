@@ -4,12 +4,67 @@
  */
 ?>
 
+
+
+<!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+<script defer="" type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>-->
+<!--<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js" defer=""></script>-->
+  <meta charset="utf-8">
+
+
+  <script type="text/javascript" charset="utf8" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.20/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.20/datatables.min.js" ></script>
+    <script>
+
+      $(document).ready(function(){
+        $.noConflict();
+        var table = $('#table_id').dataTable({
+          "language": {
+            "decimal": "",
+        "emptyTable": "No hay información",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar:",
+        "zeroRecords": "Sin resultados encontrados",
+        "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        }
+    },
+        "pagingType": "full_numbers"});
+
+    });
+    </script>
+
+<style>
+  table th {
+        text-align: center;
+        }
+    table tr {
+            text-align: center;
+        }
+</style>
+
+
 <?php use Phalcon\Tag; ?>
 
 <br>
 <br>
 <div class="row">
-    
+
     <nav>
         <ul class="pager">
             <button class="btn btn-default" class="previous"><?php echo $this->tag->linkTo(["/", "Atras"]); ?></button>
@@ -23,27 +78,32 @@
 </div>
 
 <?php echo $this->getContent(); ?>
+<table id="table_id" class="table">
+  <thead>
+    <tr>
+            <th scope="col">Codigo de Categoria</th>
+            <th scope="col">Codigo de Articulo</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Descuento</th>
+            <th scope="col">Envio</th>
+            <th scope="col"></th>
+            <th scope="col">Acciones</th>
+            <th scope="col"></th>
+    <!--<tr>
 
-<div class="row">
-    <table bordes:black 5px solid; class="table table-bordered table-striped">
-        <thead class="thead-dark">
+      <th scope="col">Acciones</th>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>-->
+  </thead>
+  <tbody>
+    <?php foreach ($page->items as $articulo): ?>
             <tr>
-                <th>Codigo de Categoria</th>
-            <th>Codigo de Articulo</th>
-            <th>Titulo</th>
-            <th>Precio</th>
-            <th>Descripcion</th>
-            <th>Descuento</th>
-            <th>Envio</th>
-
-                <th style="text-align: center" colspan="3">Acciones</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($page->items as $articulo): ?>
-            <tr>
-                <td><?php echo $articulo->getCodigoCategoria() ?></td>
+            <td><?php echo $articulo->getCodigoCategoria() ?></td>
             <td><?php echo $articulo->getCodigoArticulo() ?></td>
             <td><?php echo $articulo->getTitulo() ?></td>
             <td>$<?php echo $articulo->getPrecio() ?></td>
@@ -51,14 +111,50 @@
             <td>$<?php echo $articulo->getDescuento() ?></td>
             <td><?php echo $articulo->getEnvio() ?></td>
 
-                <td><?php echo $this->tag->linkTo(["articulo/edit/" . $articulo->getCodigoCategoria(), "Editar"]); ?></td>
-                <td><?php echo $this->tag->linkTo(["articulo/eliminar/" . $articulo->getCodigoCategoria(), "Borrar"]); ?></td>
-                <td><?php echo $this->tag->linkTo(["inventario/new/" . $articulo->getCodigoArticulo(), "Crear inventario"]); ?></td>
+            <td><?php echo $this->tag->linkTo(["articulo/edit/" . $articulo->getCodigoArticulo(), "Editar"]); ?></td>
+            <td><?php echo $this->tag->linkTo(["articulo/eliminar/" . $articulo->getCodigoArticulo(), "Borrar"]); ?></td>
+            <td><?php echo $this->tag->linkTo(["inventario/new/" . $articulo->getCodigoArticulo(), "Crear inventario"]); ?></td>
+            </tr>
+        <?php endforeach; ?>
+
+  </tbody>
+</table>
+<!--<div class="table-responsive">
+<div>
+    <table id="table_id" bordes:black 5px solid; class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+            <th>Codigo de Categoria</th>
+            <th>Codigo de Articulo</th>
+            <th>Titulo</th>
+            <th>Precio</th>
+            <th>Descripcion</th>
+            <th>Descuento</th>
+            <th>Envio</th>
+            <th style="text-align: center" colspan="3">Acciones</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($page->items as $articulo): ?>
+            <tr>
+            <td><?php echo $articulo->getCodigoCategoria() ?></td>
+            <td><?php echo $articulo->getCodigoArticulo() ?></td>
+            <td><?php echo $articulo->getTitulo() ?></td>
+            <td>$<?php echo $articulo->getPrecio() ?></td>
+            <td><?php echo $articulo->getDescripcion() ?></td>
+            <td>$<?php echo $articulo->getDescuento() ?></td>
+            <td><?php echo $articulo->getEnvio() ?></td>
+
+            <td><?php echo $this->tag->linkTo(["articulo/edit/" . $articulo->getCodigoArticulo(), "Editar"]); ?></td>
+            <td><?php echo $this->tag->linkTo(["articulo/eliminar/" . $articulo->getCodigoArticulo(), "Borrar"]); ?></td>
+            <td><?php echo $this->tag->linkTo(["inventario/new/" . $articulo->getCodigoArticulo(), "Crear inventario"]); ?></td>
             </tr>
         <?php endforeach; ?>
         </tbody>
     </table>
 </div>
+</div>-->
 
 <div class="row">
     <div class="col-sm-1">

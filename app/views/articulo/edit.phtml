@@ -44,6 +44,39 @@ echo '</pre>';*/
     );
 ?>
 
+
+<?php
+
+    use venta\Inventario;
+    use venta\Articulo;
+    /*PRINT("DFFFFFFFFF");
+    print($codigo_departamento);*/
+
+
+    $inventario = Inventario::findFirstBycodigo_articulo($codigo_articulo);
+    
+
+    if ($inventario->codigo_articulo == $codigo_articulo) { ?>
+
+        <div class="form-group">
+            <label for="fieldCodigoArticulo" class="col-sm-2 control-label"><b>Codigo de Articulo</b></label>
+            <div class="col-sm-10">
+                <input readonly <?php echo $this->tag->textField(["codigo_articulo", "type" => "number", "class" => "form-control", "id" => "fieldCodigoArticulo"]) ?> 
+    </div>
+</div>
+
+   <?php } else { ?>
+    <div class="form-group">
+        <label for="fieldCodigoArticulo" class="col-sm-2 control-label"><b>Codigo de Articulo</b></label>
+        <div class="col-sm-10">
+            <input <?php echo $this->tag->textField(["codigo_articulo", "type" => "number", "class" => "form-control", "id" => "fieldCodigoArticulo"]) ?> 
+    </div>
+</div>
+
+   <?php } ?>    
+
+
+
 <div class="form-group">
     <label for="fieldCodigoCategoria" class="col-sm-2 control-label"><b>Codigo de Categoria</b></label>
 
@@ -53,18 +86,9 @@ echo '</pre>';*/
     
     </div>
 
-    
+
     
 
-
-<div class="form-group">
-</div>
-    <label for="fieldCodigoArticulo" class="col-sm-2 control-label"><b>Codigo de Articulo</b></label>
-    <div class="col-sm-10">
-    <input readonly <?php echo $this->tag->textField(["codigo_articulo", "type" => "number", "class" => "form-control", "id" => "fieldCodigoArticulo"]) ?> 
-    
-    </div>
-</div>
 
 
 
@@ -108,9 +132,11 @@ echo '</pre>';*/
     <label for="archivo" class="col-sm-2 control-label"><b>Imagen</b></label>
     <div class="col-sm-10">
         <input class="form-control" type="file" id="ruta" name="ruta">
+        <img src="files/<?php echo "codigo_articulo".'/'."ruta";?>">
         <!--<?php echo $this->tag->fileField(["ruta", "size" => 30, "class" => "form-control", "id" => "fieldEnvio"]) ?>-->
 
        <!--<?php
+
        echo "<img src=\files\1\descarga.png>";
        ?>-->
        <img src="/descarga.png">

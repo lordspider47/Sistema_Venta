@@ -3,7 +3,8 @@
 $loader = new \Phalcon\Loader();
 $loader->registerNamespaces(
 	[
-		"venta" 	=> $config->application->modelsDir
+		"venta" 	=> $config->application->modelsDir,
+		"Apps\Middlewares" => $config->application->modelsDir
 	]
 );
 
@@ -14,7 +15,7 @@ $loader->registerDirs(
 	/*array(
 		'../app/models/',
 		'../../app/controllers/'
-		
+
 	)*/
     [
         $config->application->controllersDir,

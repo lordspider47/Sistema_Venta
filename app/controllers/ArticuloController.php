@@ -1,5 +1,5 @@
 <?php
- 
+
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 use venta\Articulo;
@@ -72,11 +72,11 @@ class ArticuloController extends ControllerBase
      *
      * @param string $codigo_categoria
      */
-    public function editAction($codigo_categoria)
+    public function editAction($codigo_articulo)
     {
         if (!$this->request->isPost()) {
 
-            $articulo = Articulo::findFirstBycodigo_categoria($codigo_categoria);
+            $articulo = Articulo::findFirstBycodigo_articulo($codigo_articulo);
             if (!$articulo) {
                 $this->flash->error("EL ARTICULO NO HA SIDO ENCONTRADO");
 
@@ -87,14 +87,14 @@ class ArticuloController extends ControllerBase
 
                 return;
             }
-            
 
 
 
 
 
 
-            $this->view->codigo_categoria = $articulo->getCodigoCategoria();
+
+            $this->view->codigo_articulo = $articulo->getCodigoArticulo();
 
             $this->tag->setDefault("codigo_categoria", $articulo->getCodigoCategoria());
             $this->tag->setDefault("codigo_articulo", $articulo->getCodigoArticulo());
@@ -150,13 +150,13 @@ class ArticuloController extends ControllerBase
             }
         }
 
-        
 
-            
+
+
 
 
             /**$id_imagen = $this->tag->setDefault("codigo_articulo", $articulo->getCodigoArticulo());*/
-            
+
         }
     }
 
@@ -166,11 +166,11 @@ class ArticuloController extends ControllerBase
      *
      * @param string $codigo_categoria
      */
-    public function eliminarAction($codigo_categoria)
+    public function eliminarAction($codigo_articulo)
     {
         if (!$this->request->isPost()) {
 
-            $articulo = Articulo::findFirstBycodigo_categoria($codigo_categoria);
+            $articulo = Articulo::findFirstBycodigo_articulo($codigo_articulo);
             $codigo = $articulo->codigo_articulo;
             $inventario = Inventario::findFirstBycodigo_articulo($codigo);
             if ($inventario->codigo_articulo == $articulo->codigo_articulo) {
@@ -197,10 +197,10 @@ class ArticuloController extends ControllerBase
 
                 return;
             }*/
-            
+
             /*$taru = $articulo->ruta;
             $borar = $articulo->codigo_articulo;
-            
+
 
                 unlink('/'.$taru);
                 rmdir('files/'.$borar);***********/
@@ -213,10 +213,10 @@ class ArticuloController extends ControllerBase
                     unlink($borar);
                 }*/
             /*}*/
-            
+
             /*rmdir('files/'.$borar.'/');*/
 
-            $this->view->codigo_categoria = $articulo->getCodigoCategoria();
+            $this->view->codigo_articulo = $articulo->getCodigoArticulo();
 
             $this->tag->setDefault("codigo_categoria", $articulo->getCodigoCategoria());
             $this->tag->setDefault("codigo_articulo", $articulo->getCodigoArticulo());
@@ -225,7 +225,7 @@ class ArticuloController extends ControllerBase
             $this->tag->setDefault("descripcion", $articulo->getDescripcion());
             $this->tag->setDefault("descuento", $articulo->getDescuento());
             $this->tag->setDefault("envio", $articulo->getEnvio());
-            
+
         }
     }
 
@@ -369,7 +369,7 @@ class ArticuloController extends ControllerBase
         $articulo->setDescripcion($this->request->getPost("descripcion"));
         $articulo->setDescuento($this->request->getPost("descuento"));
         $articulo->setEnvio($this->request->getPost("envio"));
-        
+
 
         if (!$articulo->save()) {
 
@@ -399,15 +399,15 @@ class ArticuloController extends ControllerBase
      *
      * @param string $codigo_categoria
      */
-    public function deleteAction($codigo_categoria)
+    public function deleteAction($codigo_articulo)
     {
-        $articulo = Articulo::findFirstBycodigo_categoria($codigo_categoria);
+        $articulo = Articulo::findFirstBycodigo_articulo($codigo_articulo);
         if (!$articulo) {
             $this->flash->error("EL ARTICULO NO HA SIDO ENCONTRADO");
 
             $this->dispatcher->forward([
                 'controller' => "articulo",
-                'action' => 'index'
+                'action' => 'search'
             ]);
 
             return;
@@ -419,7 +419,7 @@ class ArticuloController extends ControllerBase
 
         unlink('files/'.$id_imagen.'/'.$taru);
         rmdir('files/'.$id_imagen);
-        
+
 
         if (!$articulo->delete()) {
 
@@ -439,7 +439,7 @@ class ArticuloController extends ControllerBase
 
         $this->dispatcher->forward([
             'controller' => "articulo",
-            'action' => "index"
+            'action' => "search"
         ]);
     }
 
