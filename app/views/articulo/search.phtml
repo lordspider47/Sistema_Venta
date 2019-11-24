@@ -79,7 +79,7 @@
 
 <?php echo $this->getContent(); ?>
 <table id="table_id" class="table">
-  <thead>
+  <thead class="thead-dark">
     <tr>
             <th scope="col">Codigo de Categoria</th>
             <th scope="col">Codigo de Articulo</th>
@@ -111,8 +111,14 @@
             <td>$<?php echo $articulo->getDescuento() ?></td>
             <td><?php echo $articulo->getEnvio() ?></td>
 
-            <td><?php echo $this->tag->linkTo(["articulo/edit/" . $articulo->getCodigoArticulo(), "Editar"]); ?></td>
-            <td><?php echo $this->tag->linkTo(["articulo/eliminar/" . $articulo->getCodigoArticulo(), "Borrar"]); ?></td>
+            <td>
+                <button class="btn btn-default">
+                <?php echo $this->tag->linkTo(["articulo/edit/" . $articulo->getCodigoArticulo(), "Editar"]); ?>
+                </button></td>
+            <td>
+                <button class="btn btn-danger">
+                <?php echo $this->tag->linkTo(["articulo/eliminar/" . $articulo->getCodigoArticulo(), "Borrar"]); ?>
+                </button></td>
             <td><?php echo $this->tag->linkTo(["inventario/new/" . $articulo->getCodigoArticulo(), "Crear inventario"]); ?></td>
             </tr>
         <?php endforeach; ?>

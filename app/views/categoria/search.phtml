@@ -6,6 +6,53 @@
  */
 ?>
 
+<meta charset="utf-8">
+
+
+  <script type="text/javascript" charset="utf8" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.20/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.20/datatables.min.js" ></script>
+    <script>
+
+      $(document).ready(function(){
+        $.noConflict();
+        var table = $('#table_id').dataTable({
+          "language": {
+            "decimal": "",
+        "emptyTable": "No hay información",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar:",
+        "zeroRecords": "Sin resultados encontrados",
+        "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        }
+    },
+        "pagingType": "full_numbers"});
+
+    });
+    </script>
+
+<style>
+  table th {
+        text-align: center;
+        }
+    table tr {
+            text-align: center;
+        }
+</style>
+
+
 <?php use Phalcon\Tag; ?>
 <?php use Phalcon\Escaper;
 use Phalcon\Flash\Direct;
@@ -32,27 +79,35 @@ $flash = new Direct($escaper);
 
 <?php echo $this->getContent(); ?>
 
-<div class="row">
-    <table class="table table-bordered table-hover">
+
+    <table id="table_id" class="table">
         <thead class="thead-dark">
             <tr>
-                <th>Codigo de Categoria</th>
-            <th>Nombre de Categoria</th>
-            <th>Codigo de Departamento</th>
-
-                <th style="text-align: center" colspan="3">Acciones</th>
+                <th scope="col">Codigo de Categoria</th>
+            <th scope="col">Nombre de Categoria</th>
+            <th scope="col">Codigo de Departamento</th>
+            <th scope="col"></th>
+                <th scope="col">Acciones</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
         <?php foreach ($page->items as $categoria): ?>
             <tr>
-                <td><?php echo $categoria->getCodigoCategoria() ?></td>
+            <td><?php echo $categoria->getCodigoCategoria() ?></td>
             <td><?php echo $categoria->getNombreCategoria() ?></td>
             <td><?php echo $categoria->getCodigoDepartamento() ?></td>
 
-                <td><?php echo $this->tag->linkTo(["categoria/edit/" . $categoria->getCodigoCategoria(), "Editar"]); ?></td>
-                <td><?php echo $this->tag->linkTo(["categoria/eliminar/" . $categoria->getCodigoCategoria(), "Borrar"]); ?></td>
-                <td><?php echo $this->tag->linkTo(["articulo/new/" . $categoria->getCodigoCategoria(), "Ingresar Articulo"]); ?></td>
+            <td>
+                <button class="btn btn-default">
+                <?php echo $this->tag->linkTo(["categoria/edit/" . $categoria->getCodigoCategoria(), "Editar"]); ?>
+                </button></td>
+            <td>
+                <button class="btn btn-danger">
+                <?php echo $this->tag->linkTo(["categoria/eliminar/" . $categoria->getCodigoCategoria(), "Borrar"]); ?>
+                </button></td>
+            <td>
+            <?php echo $this->tag->linkTo(["articulo/new/" . $categoria->getCodigoCategoria(), "Ingresar Articulo"]); ?></td>
             </tr>
         <?php endforeach; ?>
         </tbody> 
