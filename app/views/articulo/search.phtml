@@ -61,6 +61,12 @@
 
 <?php use Phalcon\Tag; ?>
 
+
+<?php
+                  if ($this->session->has('IS_LOGIN'))
+                            { ?>
+
+
 <br>
 <br>
 <div class="row">
@@ -179,3 +185,5 @@
         </nav>
     </div>
 </div>
+
+<?php   } ?>

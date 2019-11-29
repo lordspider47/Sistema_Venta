@@ -41,6 +41,20 @@ class Users extends \Phalcon\Mvc\Model
     protected $active;
 
     /**
+     *
+     * @var string
+     * @Column(column="created", type="string", nullable=false)
+     */
+    protected $created;
+
+    /**
+     *
+     * @var string
+     * @Column(column="updated", type="string", nullable=false)
+     */
+    protected $updated;
+
+    /**
      * Method to set the value of field id
      *
      * @param integer $id
@@ -88,6 +102,45 @@ class Users extends \Phalcon\Mvc\Model
     public function setPassword($password)
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Method to set the value of field active
+     *
+     * @param integer $active
+     * @return $this
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Method to set the value of field created
+     *
+     * @param string $created
+     * @return $this
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Method to set the value of field updated
+     *
+     * @param string $updated
+     * @return $this
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
 
         return $this;
     }

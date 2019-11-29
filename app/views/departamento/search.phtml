@@ -59,6 +59,10 @@ $escaper = new Escaper();
 $flash = new Direct($escaper);
 
 ?>
+
+<?php
+                  if ($this->session->has('IS_LOGIN'))
+                            { ?>
 <br>
 <br>
 <div class="row">
@@ -128,3 +132,4 @@ $flash = new Direct($escaper);
         </nav>
     </div>
 </div>
+<?php   } ?>

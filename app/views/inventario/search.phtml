@@ -53,13 +53,17 @@
 
 <?php use Phalcon\Tag; ?>
 <?php use Phalcon\Escaper;
-use Phalcon\Flash\Direct; 
+use Phalcon\Flash\Direct;
 
 $escaper = new Escaper();
 $flash = new Direct($escaper);
-use venta\Articulo; 
+use venta\Articulo;
 
 ?>
+
+<?php
+                  if ($this->session->has('IS_LOGIN'))
+                            { ?>
 
 <br>
 <br>
@@ -93,7 +97,7 @@ use venta\Articulo;
                 <th scope="col"></th>
                 <th scope="col"> Opciones</th>
                 <th scope="col"></th>
-            
+
             </tr>
         </thead>
         <tbody>
@@ -104,7 +108,7 @@ use venta\Articulo;
                 <td><?php echo $inventario->getCantidad() ?></td>
                 <td><?php echo $inventario->getCodigoArticulo() ?></td>
                     <?php
-                        $articulo = Articulo::findFirstBycodigo_articulo($inventario->getCodigoArticulo()); 
+                        $articulo = Articulo::findFirstBycodigo_articulo($inventario->getCodigoArticulo());
                     ?>
                 <td><?php echo $articulo->titulo ?></td>
 
@@ -142,3 +146,4 @@ use venta\Articulo;
         </nav>
     </div>
 </div>
+<?php   } ?>

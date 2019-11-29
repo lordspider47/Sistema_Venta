@@ -22,4 +22,10 @@ $loader->registerDirs(
     ]
 );
 
+$loader->registerClasses(
+    [
+        'Mail' => APP_PATH. '/library/Mail/Mail.php',
+    ]
+);
+
 $loader->register();

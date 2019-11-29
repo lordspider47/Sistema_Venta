@@ -6,7 +6,7 @@
 /*$id = $_GET['codigo_articulo'];
 
 echo '<pre>';
-print_r($_FILES); 
+print_r($_FILES);
 var_dump($_FILES);
 echo '</pre>';
 
@@ -54,14 +54,19 @@ echo '</pre>';*/
 
 
     $inventario = Inventario::findFirstBycodigo_articulo($codigo_articulo);
-    
+
 
     if ($inventario->codigo_articulo == $codigo_articulo) { ?>
+
+        <?php
+                  if ($this->session->has('IS_LOGIN'))
+                            { ?>
+
 
         <div class="form-group">
             <label for="fieldCodigoArticulo" class="col-sm-2 control-label"><b>Codigo de Articulo</b></label>
             <div class="col-sm-10">
-                <input readonly <?php echo $this->tag->textField(["codigo_articulo", "type" => "number", "class" => "form-control", "id" => "fieldCodigoArticulo"]) ?> 
+                <input readonly <?php echo $this->tag->textField(["codigo_articulo", "type" => "number", "class" => "form-control", "id" => "fieldCodigoArticulo"]) ?>
     </div>
 </div>
 
@@ -69,11 +74,11 @@ echo '</pre>';*/
     <div class="form-group">
         <label for="fieldCodigoArticulo" class="col-sm-2 control-label"><b>Codigo de Articulo</b></label>
         <div class="col-sm-10">
-            <input <?php echo $this->tag->textField(["codigo_articulo", "type" => "number", "class" => "form-control", "id" => "fieldCodigoArticulo"]) ?> 
+            <input <?php echo $this->tag->textField(["codigo_articulo", "type" => "number", "class" => "form-control", "id" => "fieldCodigoArticulo"]) ?>
     </div>
 </div>
 
-   <?php } ?>    
+   <?php } ?>
 
 
 
@@ -81,13 +86,13 @@ echo '</pre>';*/
     <label for="fieldCodigoCategoria" class="col-sm-2 control-label"><b>Codigo de Categoria</b></label>
 
     <div class="col-sm-10">
-    <input readonly <?php echo $this->tag->textField(["codigo_categoria", "type" => "number", "class" => "form-control", "id" => "fieldCodigoCategoria"]) ?>  
+    <input readonly <?php echo $this->tag->textField(["codigo_categoria", "type" => "number", "class" => "form-control", "id" => "fieldCodigoCategoria"]) ?>
     </div>
-    
+
     </div>
 
 
-    
+
 
 
 
@@ -128,7 +133,7 @@ echo '</pre>';*/
 </div>
 
 <div class="form-group">
-    
+
     <label for="archivo" class="col-sm-2 control-label"><b>Imagen</b></label>
     <div class="col-sm-10">
         <input class="form-control" type="file" id="ruta" name="ruta">
@@ -140,7 +145,7 @@ echo '</pre>';*/
        echo "<img src=\files\1\descarga.png>";
        ?>-->
        <img src="/descarga.png">
-      <!-- <?php 
+      <!-- <?php
                             $path = '/'.$ruta;
                             if(file_exists($path)){
                                 $directorio = opendir($path);
@@ -153,11 +158,11 @@ echo '</pre>';*/
                                     }
                                 }
                             }
-                            
+
                         ?> -->
-       
+
     </div>
-    
+
 </div>
 
 
@@ -170,3 +175,6 @@ echo '</pre>';*/
 </div>
 
 <?php echo $this->tag->endForm(); ?>
+
+
+<?php   } ?>

@@ -113,11 +113,11 @@ background: linear-gradient(90deg, #F7F8E0 1%, #81F781 90%);">
                         # Check User Login
                         if ($this->session->has('IS_LOGIN'))
                         {
-                            #echo $this->tag->linkTo([
-                                #"user/profile",
-                                #'<i class="fa fa-user" aria-hidden="true"></i> Profile',
-                                #"class" => "btn btn-light"
-                            #]);
+                            echo $this->tag->linkTo([
+                                "user/register",
+                                '<i class="fa fa-user-plus" aria-hidden="true"></i> Register',
+                                "class" => "btn btn-outline-light"
+                            ]);
 
                             echo "&nbsp;";
 
@@ -138,9 +138,9 @@ background: linear-gradient(90deg, #F7F8E0 1%, #81F781 90%);">
                             echo "&nbsp;";
 
                             echo $this->tag->linkTo([
-                                "user/register",
-                                '<i class="fa fa-user-plus" aria-hidden="true"></i> Register',
-                                "class" => "btn btn-outline-light"
+                                #"user/register",
+                                #'<i class="fa fa-user-plus" aria-hidden="true"></i> Register',
+                                #"class" => "btn btn-outline-light"
                             ]);
                         }
                     ?>

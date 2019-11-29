@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 /**
@@ -63,6 +63,10 @@ $flash = new Direct($escaper);
 /*$flash->error('enserio desea eliminar');*/
 ?>
 
+<?php
+                  if ($this->session->has('IS_LOGIN'))
+                            { ?>
+
 <br><br>
 <div class="row">
     <nav>
@@ -110,7 +114,7 @@ $flash = new Direct($escaper);
             <?php echo $this->tag->linkTo(["articulo/new/" . $categoria->getCodigoCategoria(), "Ingresar Articulo"]); ?></td>
             </tr>
         <?php endforeach; ?>
-        </tbody> 
+        </tbody>
     </table>
 </div>
 
@@ -131,3 +135,5 @@ $flash = new Direct($escaper);
         </nav>
     </div>
 </div>
+
+<?php   } ?>
