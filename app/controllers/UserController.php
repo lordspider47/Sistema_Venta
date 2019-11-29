@@ -109,7 +109,7 @@ class UserController extends ControllerBase
                 $this->session->set('IS_LOGIN', 1);
 
                 // $this->flashSession->success("Login Success");
-                return $this->response->redirect('user/profile');
+                return $this->response->redirect('');
             }
         } else {
             // To protect against timing attacks. Regardless of whether a user
