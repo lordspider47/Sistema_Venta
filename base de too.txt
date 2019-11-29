@@ -60,5 +60,8 @@ ALTER TABLE users
 
 
 INSERT INTO users(id,name,email,password,active)
-VALUES(1,'leonel','leoramos4094@gmail.com','$2y$08$UXRsSTJsSmFRbGFSNDhibOWLzcz1xpN6qRlXqMvy9X2cdKGfLsM8K',TRUE);
+VALUES(2,'leonel','leoramos4094@gmail.com','$2y$08$UXRsSTJsSmFRbGFSNDhibOWLzcz1xpN6qRlXqMvy9X2cdKGfLsM8K',TRUE);
+
+INSERT INTO users(id,name,email,password,active)
+VALUES(3,'fatima','fatima@gmail.com','$2y$08$UXRsSTJsSmFRbGFSNDhibOWLzcz1xpN6qRlXqMvy9X2cdKGfLsM8K',TRUE);
 
