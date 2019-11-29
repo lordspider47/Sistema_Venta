@@ -1,5 +1,5 @@
 <?php
- 
+
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 use venta\Categoria;
@@ -93,7 +93,7 @@ class CategoriaController extends ControllerBase
             $this->tag->setDefault("codigo_categoria", $categoria->getCodigoCategoria());
             $this->tag->setDefault("nombre_categoria", $categoria->getNombreCategoria());
             $this->tag->setDefault("codigo_departamento", $categoria->getCodigoDepartamento());
-            
+
         }
     }
 
@@ -118,10 +118,10 @@ class CategoriaController extends ControllerBase
 
                 ]);
                 return;
-                
+
             } */
 
-            
+
 
             if ($categoria->codigo_categoria == $articulo->codigo_categoria) {
 
@@ -173,7 +173,7 @@ class CategoriaController extends ControllerBase
             $this->tag->setDefault("codigo_categoria", $categoria->getCodigoCategoria());
             $this->tag->setDefault("nombre_categoria", $categoria->getNombreCategoria());
             $this->tag->setDefault("codigo_departamento", $categoria->getCodigoDepartamento());
-            
+
         }
     }
 
@@ -209,7 +209,7 @@ class CategoriaController extends ControllerBase
         $categoria->setCodigoCategoria($this->request->getPost("codigo_categoria"));
         $categoria->setNombreCategoria($this->request->getPost("nombre_categoria"));
         $categoria->setCodigoDepartamento($this->request->getPost("codigo_departamento"));
-        
+
 
         if (!$categoria->save()) {
             foreach ($categoria->getMessages() as $message) {
@@ -265,7 +265,7 @@ class CategoriaController extends ControllerBase
         $categoria->setCodigoCategoria($this->request->getPost("codigo_categoria"));
         $categoria->setNombreCategoria($this->request->getPost("nombre_categoria"));
         $categoria->setCodigoDepartamento($this->request->getPost("codigo_departamento"));
-        
+
 
         if (!$categoria->save()) {
 

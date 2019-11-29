@@ -102,12 +102,18 @@ $flash = new Direct($escaper);
                 <td>
                     <button class="btn btn-default">
                         <?php echo $this->tag->linkTo(["departamento/edit/" . $departamento->getCodigoDepartamento(), "Editar"]); ?>
-                    </button></td>
+                    </button>
+                </td>
                 <td>
                     <button class="btn btn-danger">
                         <?php echo $this->tag->linkTo(["departamento/eliminar/" . $departamento->getCodigoDepartamento(), "Eliminar"]); ?>
-                    </button></td>
-                    <td><?php echo $this->tag->linkTo(["categoria/new/" . $departamento->getCodigoDepartamento(), "Agregar Categoria"]); ?></td>
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-default">
+                        <?php echo $this->tag->linkTo(["categoria/new/" . $departamento->getCodigoDepartamento(), "Agregar Categoria"]);
+                        ?>
+                    </button>
                 </td>
             </tr>
         <?php endforeach; ?>

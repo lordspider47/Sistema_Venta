@@ -94,7 +94,7 @@ use venta\Articulo;
                 <th scope="col">Cantidad</th>
                 <th scope="col">Codigo de Articulo</th>
                 <th scope="col">Articulo</th>
-                <th scope="col"></th>
+
                 <th scope="col"> Opciones</th>
                 <th scope="col"></th>
 
@@ -115,9 +115,9 @@ use venta\Articulo;
                 <td>
                     <button class="btn btn-default">
                     <?php echo $this->tag->linkTo(["inventario/edit/" . $inventario->getCodigoArticulo(), "Editar"]); ?>
-                    </button></td>
-                    </td>
-                <td></td>
+                    </button>
+                </td>
+
                 <td>
                     <button class="btn btn-danger">
                     <?php echo $this->tag->linkTo(["inventario/delete/" . $inventario->getCodigoArticulo(), "Eliminar"]); ?>

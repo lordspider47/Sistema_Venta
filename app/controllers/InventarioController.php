@@ -1,5 +1,5 @@
 <?php
- 
+
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 use venta\Inventario;
@@ -93,7 +93,7 @@ class InventarioController extends ControllerBase
             $this->tag->setDefault("codigo_articulo", $inventario->getCodigoArticulo());
             $this->tag->setDefault("id_inventario", $inventario->getIdInventario());
             $this->tag->setDefault("cantidad", $inventario->getCantidad());
-            
+
         }
     }
 
@@ -127,11 +127,11 @@ class InventarioController extends ControllerBase
 
 
         $inventario = new Inventario();
-        
-        $inventario->setCodigoArticulo($this->request->getPost("codigo_articulo")); 
+
+        $inventario->setCodigoArticulo($this->request->getPost("codigo_articulo"));
         $inventario->setIdInventario($this->request->getPost("id_inventario"));
         $inventario->setCantidad($this->request->getPost("cantidad"));
-        
+
 
         if (!$inventario->save()) {
             foreach ($inventario->getMessages() as $message) {
@@ -187,7 +187,7 @@ class InventarioController extends ControllerBase
         $inventario->setCodigoArticulo($this->request->getPost("codigo_articulo"));
         $inventario->setIdInventario($this->request->getPost("id_inventario"));
         $inventario->setCantidad($this->request->getPost("cantidad"));
-        
+
 
         if (!$inventario->save()) {
 

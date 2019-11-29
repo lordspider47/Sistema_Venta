@@ -1,5 +1,5 @@
-<?php 
- 
+<?php
+
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 use venta\Departamento;
@@ -60,7 +60,7 @@ class DepartamentoController extends ControllerBase
      */
     public function newAction()
     {
-        
+
 
     }
 
@@ -89,7 +89,7 @@ class DepartamentoController extends ControllerBase
 
             $this->tag->setDefault("codigo_departamento", $departamento->getCodigoDepartamento());
             $this->tag->setDefault("nombre_departamento", $departamento->getNombreDepartamento());
-            
+
         }
     }
 
@@ -104,13 +104,13 @@ class DepartamentoController extends ControllerBase
     {
         if (!$this->request->isPost()) {
 
-            
+
             $departamento = Departamento::findFirstBycodigo_departamento($codigo_departamento);
             $codigo = $departamento->codigo_departamento;
             $categoria = Categoria::findFirstBycodigo_departamento($codigo);
 
-            
-            
+
+
 
             if ($categoria->codigo_departamento == $departamento->codigo_departamento) {
 
@@ -142,7 +142,7 @@ class DepartamentoController extends ControllerBase
 
             $this->tag->setDefault("codigo_departamento", $departamento->getCodigoDepartamento());
             $this->tag->setDefault("nombre_departamento", $departamento->getNombreDepartamento());
-            
+
         }
     }
 
@@ -178,7 +178,7 @@ class DepartamentoController extends ControllerBase
         $departamento = new Departamento();
         $departamento->setCodigoDepartamento($this->request->getPost("codigo_departamento"));
         $departamento->setNombreDepartamento($this->request->getPost("nombre_departamento"));
-        
+
 
         if (!$departamento->save()) {
             foreach ($departamento->getMessages() as $message) {
@@ -233,7 +233,7 @@ class DepartamentoController extends ControllerBase
 
         $departamento->setCodigoDepartamento($this->request->getPost("codigo_departamento"));
         $departamento->setNombreDepartamento($this->request->getPost("nombre_departamento"));
-        
+
 
         if (!$departamento->save()) {
 

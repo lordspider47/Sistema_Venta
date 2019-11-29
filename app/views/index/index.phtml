@@ -1,3 +1,49 @@
+<meta charset="utf-8">
+
+
+  <script type="text/javascript" charset="utf8" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.20/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.20/datatables.min.js" ></script>
+    <script>
+
+      $(document).ready(function(){
+        $.noConflict();
+        var table = $('#table_id').dataTable({
+          "language": {
+            "decimal": "",
+        "emptyTable": "No hay información",
+        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+        "infoPostFix": "",
+        "thousands": ",",
+        "lengthMenu": "Mostrar _MENU_ Entradas",
+        "loadingRecords": "Cargando...",
+        "processing": "Procesando...",
+        "search": "Buscar:",
+        "zeroRecords": "Sin resultados encontrados",
+        "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        }
+    },
+        "pagingType": "full_numbers"});
+
+    });
+    </script>
+
+<style>
+  table th {
+        text-align: center;
+        }
+    table tr {
+            text-align: center;
+        }
+</style>
+
 <br>
 <div class="page-header">
 
@@ -10,7 +56,7 @@
             <td><h2>Podras encontrar muchos articulos que te pueden ser de mucha utilidad!</h2></td>
         </tr>
     </table>
-    
+
 </div>
 
 
@@ -19,7 +65,7 @@
 <!--<p>This page is located at <code>views/index/index.phtml</code></p>-->
 <br>
 <div class="row">
-    <table width="100%" bordes:black 1px solid; class="table table-bordered table-striped">
+    <table style="width: 1200px" id="table_id" class="table" bordes:black 1px solid; class="table table-bordered table-striped">
         <thead class="thead-dark">
             <tr>
             <th width="15%"></th>
@@ -27,12 +73,12 @@
             <!--<th width="5%">Codigo</th>
             <th width="15%" style="text-align: center;">Titulo</th>-->
             <th width="7%">Precio</th>
-            
+
             <th width="7%">Descuento</th>
             <th width="7%">Envio</th>
 
-                
-                
+
+
             </tr>
         </thead>
         <tbody>
@@ -46,12 +92,12 @@
             <!--<td><?php echo $articulo->getCodigoArticulo() ?></td>
             <td><?php echo $articulo->getTitulo() ?></td>-->
             <td>$<?php echo $articulo->getPrecio() ?></td>
-            
+
             <td>$<?php echo $articulo->getDescuento() ?></td>
             <td><?php echo $articulo->getEnvio() ?></td>
 
 
-                
+
             </tr>
         <?php endforeach; ?>
         </tbody>
