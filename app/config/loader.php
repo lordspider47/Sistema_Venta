@@ -1,10 +1,13 @@
 <?php
 
 $loader = new \Phalcon\Loader();
+
 $loader->registerNamespaces(
 	[
 		"venta" 	=> $config->application->modelsDir,
-		"Apps\Middlewares" => $config->application->modelsDir
+		"App\Forms"  => __DIR__ . '/../../app/forms/',
+
+
 	]
 );
 
@@ -12,14 +15,10 @@ $loader->registerNamespaces(
  * We're a registering a set of directories taken from the configuration file
  */
 $loader->registerDirs(
-	/*array(
-		'../app/models/',
-		'../../app/controllers/'
-
-	)*/
     [
         $config->application->controllersDir,
-        /*$config->application->ClasesExtraDir,*/
         $config->application->modelsDir
     ]
-)->register();
+);
+
+$loader->register();

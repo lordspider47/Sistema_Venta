@@ -4,6 +4,7 @@ namespace venta;
 
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\Email as EmailValidator;
+use Phalcon\Validation\Validator\Uniqueness as Uniqueness;
 
 class Users extends \Phalcon\Mvc\Model
 {
@@ -18,13 +19,7 @@ class Users extends \Phalcon\Mvc\Model
      *
      * @var string
      */
-    protected $username;
-
-    /**
-     *
-     * @var string
-     */
-    protected $password;
+    protected $name;
 
     /**
      *
@@ -36,25 +31,14 @@ class Users extends \Phalcon\Mvc\Model
      *
      * @var string
      */
-    protected $fechanacimiento;
-
-    /**
-     *
-     * @var string
-     */
-    protected $nombre;
-
-    /**
-     *
-     * @var string
-     */
-    protected $sexo;
+    protected $password;
 
     /**
      *
      * @var integer
+     * @Column(column="active", type="integer", length=4, nullable=false)
      */
-    protected $idrol;
+    protected $active;
 
     /**
      * Method to set the value of field id
@@ -70,27 +54,14 @@ class Users extends \Phalcon\Mvc\Model
     }
 
     /**
-     * Method to set the value of field username
+     * Method to set the value of field name
      *
-     * @param string $username
+     * @param string $name
      * @return $this
      */
-    public function setUsername($username)
+    public function setName($name)
     {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field password
-     *
-     * @param string $password
-     * @return $this
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
+        $this->name = $name;
 
         return $this;
     }
@@ -109,53 +80,14 @@ class Users extends \Phalcon\Mvc\Model
     }
 
     /**
-     * Method to set the value of field fechanacimiento
+     * Method to set the value of field password
      *
-     * @param string $fechanacimiento
+     * @param string $password
      * @return $this
      */
-    public function setFechanacimiento($fechanacimiento)
+    public function setPassword($password)
     {
-        $this->fechanacimiento = $fechanacimiento;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field nombre
-     *
-     * @param string $nombre
-     * @return $this
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field sexo
-     *
-     * @param string $sexo
-     * @return $this
-     */
-    public function setSexo($sexo)
-    {
-        $this->sexo = $sexo;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field idrol
-     *
-     * @param integer $idrol
-     * @return $this
-     */
-    public function setIdrol($idrol)
-    {
-        $this->idrol = $idrol;
+        $this->password = $password;
 
         return $this;
     }
@@ -171,23 +103,13 @@ class Users extends \Phalcon\Mvc\Model
     }
 
     /**
-     * Returns the value of field username
+     * Returns the value of field name
      *
      * @return string
      */
-    public function getUsername()
+    public function getName()
     {
-        return $this->username;
-    }
-
-    /**
-     * Returns the value of field password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
+        return $this->name;
     }
 
     /**
@@ -201,43 +123,23 @@ class Users extends \Phalcon\Mvc\Model
     }
 
     /**
-     * Returns the value of field fechanacimiento
+     * Returns the value of field password
      *
      * @return string
      */
-    public function getFechanacimiento()
+    public function getPassword()
     {
-        return $this->fechanacimiento;
+        return $this->password;
     }
 
     /**
-     * Returns the value of field nombre
-     *
-     * @return string
-     */
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
-
-    /**
-     * Returns the value of field sexo
-     *
-     * @return string
-     */
-    public function getSexo()
-    {
-        return $this->sexo;
-    }
-
-    /**
-     * Returns the value of field idrol
+     * Returns the value of field active
      *
      * @return integer
      */
-    public function getIdrol()
+    public function getActive()
     {
-        return $this->idrol;
+        return $this->active;
     }
 
     /**
@@ -258,6 +160,16 @@ class Users extends \Phalcon\Mvc\Model
                 ]
             )
         );
+        $validator->add(
+            'email',
+            new Uniqueness(
+                [
+                    'model'   => $this,
+                    'message' => 'Another user with same email already exists',
+                    'cancelOnFail' => true,
+                ]
+            )
+        );
 
         return $this->validate($validator);
     }
@@ -267,9 +179,8 @@ class Users extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema("public");
-        $this->setSource("users");
-        $this->belongsTo('idrol', '\Roles', 'id', ['alias' => 'Roles']);
+        /**$this->setSchema("public");
+        $this->setSource("users");*/
     }
 
     /**
@@ -304,23 +215,16 @@ class Users extends \Phalcon\Mvc\Model
         return parent::findFirst($parameters);
     }
 
-    /**
-     * Independent Column Mapping.
-     * Keys are the real names in the table and the values their names in the application
-     *
-     * @return array
-     */
     public function columnMap()
     {
         return [
             'id' => 'id',
-            'username' => 'username',
-            'password' => 'password',
+            'name' => 'name',
             'email' => 'email',
-            'fechanacimiento' => 'fechanacimiento',
-            'nombre' => 'nombre',
-            'sexo' => 'sexo',
-            'idrol' => 'idrol'
+            'password' => 'password',
+            'active' => 'active',
+            'created' => 'created',
+            'updated' => 'updated',
         ];
     }
 

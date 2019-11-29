@@ -14,7 +14,7 @@ return new \Phalcon\Config([
 	    'port'	      => 5432,
         'username'    => 'postgres',
         'password'    => 'admin123',
-        
+
         //'charset'     => 'utf8',
 	//'schema' => 'public'
     ],
@@ -23,6 +23,7 @@ return new \Phalcon\Config([
         'controllersDir' => __DIR__ . '/../../app/controllers/',
         'modelsDir'      => __DIR__ . '/../../app/models/',
         'migrationsDir'  => __DIR__ . '/../../app/migrations/',
+        'App\Forms'      => __DIR__ . '/../../app/forms/',
         'viewsDir'       => __DIR__ . '/../../app/views/',
         'pluginsDir'     => __DIR__ . '/../../app/plugins/',
         'libraryDir'     => __DIR__ . '/../../app/library/',
